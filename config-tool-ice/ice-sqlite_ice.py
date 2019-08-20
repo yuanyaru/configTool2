@@ -626,30 +626,18 @@ __name__ = 'SOEArea'
 if 'DxPropertySOE' not in _M_SOEArea.__dict__:
     _M_SOEArea.DxPropertySOE = Ice.createTempClass()
     class DxPropertySOE(object):
-        def __init__(self, num=0, level=0, NowTime='', time='', StationName='', SOEName='', pointID=0, status='', Operater='', SOEOper=''):
-            self.num = num
+        def __init__(self, ID=0, name='', describe='', level=0):
+            self.ID = ID
+            self.name = name
+            self.describe = describe
             self.level = level
-            self.NowTime = NowTime
-            self.time = time
-            self.StationName = StationName
-            self.SOEName = SOEName
-            self.pointID = pointID
-            self.status = status
-            self.Operater = Operater
-            self.SOEOper = SOEOper
 
         def __hash__(self):
             _h = 0
-            _h = 5 * _h + Ice.getHash(self.num)
+            _h = 5 * _h + Ice.getHash(self.ID)
+            _h = 5 * _h + Ice.getHash(self.name)
+            _h = 5 * _h + Ice.getHash(self.describe)
             _h = 5 * _h + Ice.getHash(self.level)
-            _h = 5 * _h + Ice.getHash(self.NowTime)
-            _h = 5 * _h + Ice.getHash(self.time)
-            _h = 5 * _h + Ice.getHash(self.StationName)
-            _h = 5 * _h + Ice.getHash(self.SOEName)
-            _h = 5 * _h + Ice.getHash(self.pointID)
-            _h = 5 * _h + Ice.getHash(self.status)
-            _h = 5 * _h + Ice.getHash(self.Operater)
-            _h = 5 * _h + Ice.getHash(self.SOEOper)
             return _h % 0x7fffffff
 
         def __compare(self, other):
@@ -658,13 +646,29 @@ if 'DxPropertySOE' not in _M_SOEArea.__dict__:
             elif not isinstance(other, _M_SOEArea.DxPropertySOE):
                 return NotImplemented
             else:
-                if self.num is None or other.num is None:
-                    if self.num != other.num:
-                        return (-1 if self.num is None else 1)
+                if self.ID is None or other.ID is None:
+                    if self.ID != other.ID:
+                        return (-1 if self.ID is None else 1)
                 else:
-                    if self.num < other.num:
+                    if self.ID < other.ID:
                         return -1
-                    elif self.num > other.num:
+                    elif self.ID > other.ID:
+                        return 1
+                if self.name is None or other.name is None:
+                    if self.name != other.name:
+                        return (-1 if self.name is None else 1)
+                else:
+                    if self.name < other.name:
+                        return -1
+                    elif self.name > other.name:
+                        return 1
+                if self.describe is None or other.describe is None:
+                    if self.describe != other.describe:
+                        return (-1 if self.describe is None else 1)
+                else:
+                    if self.describe < other.describe:
+                        return -1
+                    elif self.describe > other.describe:
                         return 1
                 if self.level is None or other.level is None:
                     if self.level != other.level:
@@ -673,70 +677,6 @@ if 'DxPropertySOE' not in _M_SOEArea.__dict__:
                     if self.level < other.level:
                         return -1
                     elif self.level > other.level:
-                        return 1
-                if self.NowTime is None or other.NowTime is None:
-                    if self.NowTime != other.NowTime:
-                        return (-1 if self.NowTime is None else 1)
-                else:
-                    if self.NowTime < other.NowTime:
-                        return -1
-                    elif self.NowTime > other.NowTime:
-                        return 1
-                if self.time is None or other.time is None:
-                    if self.time != other.time:
-                        return (-1 if self.time is None else 1)
-                else:
-                    if self.time < other.time:
-                        return -1
-                    elif self.time > other.time:
-                        return 1
-                if self.StationName is None or other.StationName is None:
-                    if self.StationName != other.StationName:
-                        return (-1 if self.StationName is None else 1)
-                else:
-                    if self.StationName < other.StationName:
-                        return -1
-                    elif self.StationName > other.StationName:
-                        return 1
-                if self.SOEName is None or other.SOEName is None:
-                    if self.SOEName != other.SOEName:
-                        return (-1 if self.SOEName is None else 1)
-                else:
-                    if self.SOEName < other.SOEName:
-                        return -1
-                    elif self.SOEName > other.SOEName:
-                        return 1
-                if self.pointID is None or other.pointID is None:
-                    if self.pointID != other.pointID:
-                        return (-1 if self.pointID is None else 1)
-                else:
-                    if self.pointID < other.pointID:
-                        return -1
-                    elif self.pointID > other.pointID:
-                        return 1
-                if self.status is None or other.status is None:
-                    if self.status != other.status:
-                        return (-1 if self.status is None else 1)
-                else:
-                    if self.status < other.status:
-                        return -1
-                    elif self.status > other.status:
-                        return 1
-                if self.Operater is None or other.Operater is None:
-                    if self.Operater != other.Operater:
-                        return (-1 if self.Operater is None else 1)
-                else:
-                    if self.Operater < other.Operater:
-                        return -1
-                    elif self.Operater > other.Operater:
-                        return 1
-                if self.SOEOper is None or other.SOEOper is None:
-                    if self.SOEOper != other.SOEOper:
-                        return (-1 if self.SOEOper is None else 1)
-                else:
-                    if self.SOEOper < other.SOEOper:
-                        return -1
-                    elif self.SOEOper > other.SOEOper:
                         return 1
                 return 0
 
@@ -788,16 +728,10 @@ if 'DxPropertySOE' not in _M_SOEArea.__dict__:
         __repr__ = __str__
 
     _M_SOEArea._t_DxPropertySOE = IcePy.defineStruct('::SOEArea::DxPropertySOE', DxPropertySOE, (), (
-        ('num', (), IcePy._t_int),
-        ('level', (), IcePy._t_int),
-        ('NowTime', (), IcePy._t_string),
-        ('time', (), IcePy._t_string),
-        ('StationName', (), IcePy._t_string),
-        ('SOEName', (), IcePy._t_string),
-        ('pointID', (), IcePy._t_int),
-        ('status', (), IcePy._t_string),
-        ('Operater', (), IcePy._t_string),
-        ('SOEOper', (), IcePy._t_string)
+        ('ID', (), IcePy._t_int),
+        ('name', (), IcePy._t_string),
+        ('describe', (), IcePy._t_string),
+        ('level', (), IcePy._t_int)
     ))
 
     _M_SOEArea.DxPropertySOE = DxPropertySOE

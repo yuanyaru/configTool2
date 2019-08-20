@@ -36,16 +36,10 @@ function show_db_soe_data() {
             var res2Json = JSON.parse(res);
             for(var i = 0; i<res2Json.length; i++) {
                 str = "<tr><td><input type='checkbox' name='soe_ID'/>"
-                + "</td><td name='td5'>" + res2Json[i].num
-                + "</td><td>" + res2Json[i].level
-                + "</td><td>" + res2Json[i].NowTime
-                + "</td><td>" + res2Json[i].time
-                + "</td><td>" + res2Json[i].StationName
-                + "</td><td>" + res2Json[i].SOEName
-                + "</td><td>" + res2Json[i].pointID
-                + "</td><td>" + res2Json[i].status
-                + "</td><td>" + res2Json[i].Operater
-                + "</td><td>" + res2Json[i].SOEOper + "</td></tr>";
+                + "</td><td name='td5'>" + res2Json[i].ID
+                + "</td><td>" + res2Json[i].name
+                + "</td><td>" + res2Json[i].describe
+                + "</td><td>" + res2Json[i].level + "</td></tr>";
 
                 // 追加到table中
                 $("#tBody_soe").append(str);
@@ -60,12 +54,6 @@ function show_db_soe_data() {
 function addSoeRow(){
     str = "<tr><td><input type='checkbox' class='i-checks' name='soe_ID'/>"
             + "</td><td name='td5'>"
-            + "</td><td>"
-            + "</td><td>"
-            + "</td><td>"
-            + "</td><td>"
-            + "</td><td>"
-            + "</td><td>"
             + "</td><td>"
             + "</td><td>"
             + "</td><td>"+ "</td></tr>";
@@ -93,38 +81,24 @@ function deleteSoeRow() {
 
 // 添加、修改
 function set_soe_data() {
-    var nums = new Array(); var levels = new Array();
-    var NowTimes = new Array(); var times = new Array();
-    var StationNames = new Array(); var SOENames = new Array();
-    var pointIDs = new Array(); var statuss = new Array();
-    var Operaters = new Array(); var SOEOpers = new Array();
+    var IDs = new Array(); var names = new Array();
+    var describes = new Array(); var levels = new Array();
     var new_data = new Array();
 
     $("input[type='checkbox'][name='soe_ID']").each(function() {
         if(this.checked) {
-            var num = $(this).parents('tr').children().eq(1).text();
-            var level = $(this).parents('tr').children().eq(2).text();
-            var NowTime = $(this).parents('tr').children().eq(3).text();
-            var time = $(this).parents('tr').children().eq(4).text();
-            var StationName = $(this).parents('tr').children().eq(5).text();
-            var SOEName = $(this).parents('tr').children().eq(6).text();
-            var pointID = $(this).parents('tr').children().eq(7).text();
-            var status = $(this).parents('tr').children().eq(8).text();
-            var Operater = $(this).parents('tr').children().eq(9).text();
-            var SOEOper = $(this).parents('tr').children().eq(10).text();
+            var ID = $(this).parents('tr').children().eq(1).text();
+            var name = $(this).parents('tr').children().eq(2).text();
+            var describe = $(this).parents('tr').children().eq(3).text();
+            var level = $(this).parents('tr').children().eq(4).text();
 
-            nums.push(num); levels.push(level); NowTimes.push(NowTime);
-            times.push(time); StationNames.push(StationName); SOENames.push(SOEName);
-            pointIDs.push(pointID); statuss.push(status); Operaters.push(Operater);
-            SOEOpers.push(SOEOper);
+            IDs.push(ID); names.push(name);
+            describes.push(describe); levels.push(level);
         }
     });
 
-    new_data.push(JSON.stringify(nums)); new_data.push(JSON.stringify(levels));
-    new_data.push(JSON.stringify(NowTimes)); new_data.push(JSON.stringify(times));
-    new_data.push(JSON.stringify(StationNames)); new_data.push(JSON.stringify(SOENames));
-    new_data.push(JSON.stringify(pointIDs)); new_data.push(JSON.stringify(statuss));
-    new_data.push(JSON.stringify(Operaters)); new_data.push(JSON.stringify(SOEOpers));
+    new_data.push(JSON.stringify(IDs)); new_data.push(JSON.stringify(names));
+    new_data.push(JSON.stringify(describes)); new_data.push(JSON.stringify(levels));
 
     var new_data_ID_len = new_data[0].length;
     if (new_data_ID_len > 2) {

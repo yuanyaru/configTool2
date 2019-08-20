@@ -69,16 +69,10 @@ module StationArea {
 
 module SOEArea {
     struct DxPropertySOE {
-        int num;
+        int ID;
+        string name;
+        string describe;
         int level;
-        string NowTime;
-        string time;
-        string StationName;
-        string SOEName;
-        int pointID;
-        string status;
-        string Operater;
-        string SOEOper;
     };
     sequence<DxPropertySOE> DxPropertySOESeq;
 };

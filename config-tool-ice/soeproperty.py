@@ -19,11 +19,8 @@ def get_soe_property_send():
     status, result = DataCommand.RPCGetSOEProperty(station)
     soeproperty = []
     for i in range(len(result)):
-        soeproperty.append({"num": result[i].num, "level": result[i].level,
-                           "NowTime": result[i].NowTime, "time": result[i].time,
-                           "StationName": result[i].StationName, "SOEName": result[i].SOEName,
-                           "pointID": result[i].pointID, "status": result[i].status,
-                           "Operater": result[i].Operater, "SOEOper": result[i].SOEOper})
+        soeproperty.append({"ID": result[i].ID, "name": result[i].name,
+                           "describe": result[i].describe, "level": result[i].level})
     return json.dumps(soeproperty)
 
 # 添加、修改(SOE属性)
@@ -39,11 +36,8 @@ def set_soe_property():
         soep.append(json.loads(SoeProperty[i]))
     soeproperty = []
     for j in range(len(soep[1])):
-        soepstruct = SOEArea.DxPropertySOE(int(soep[0][j]), int(soep[1][j]),
-                                           soep[2][j].encode("utf-8"), soep[3][j].encode("utf-8"),
-                                           soep[4][j].encode("utf-8"), soep[5][j].encode("utf-8"),
-                                           int(soep[6][j]), soep[7][j].encode("utf-8"),
-                                           soep[8][j].encode("utf-8"), soep[9][j].encode("utf-8"))
+        soepstruct = SOEArea.DxPropertySOE(int(soep[0][j]), soep[1][j].encode("utf-8"),
+                                           soep[2][j].encode("utf-8"), int(soep[3][j]))
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
     return '保存成功!'
