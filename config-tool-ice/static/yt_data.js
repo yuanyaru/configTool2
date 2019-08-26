@@ -19,6 +19,8 @@ function show_yt_table() {
 　　document.getElementById("yk_table").style.display="none";
     document.getElementById("yt_table").style.display="block";
     document.getElementById("soe_table").style.display="none";
+
+    show_db_yt_data();
 }
 
 // 清空表格

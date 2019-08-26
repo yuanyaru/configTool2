@@ -70,6 +70,8 @@ function show_sta_table() {
     document.getElementById("yk_table").style.display="none";
     document.getElementById("yt_table").style.display="none";
     document.getElementById("soe_table").style.display="none";
+
+    show_db_sta_data();
 }
 
 // 清空表格

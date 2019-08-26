@@ -19,6 +19,8 @@ function show_soe_table() {
 　　document.getElementById("yk_table").style.display="none";
     document.getElementById("yt_table").style.display="none";
     document.getElementById("soe_table").style.display="block";
+
+    show_db_soe_data();
 }
 
 // 清空表格
