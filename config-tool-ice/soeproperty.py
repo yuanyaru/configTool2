@@ -36,8 +36,20 @@ def set_soe_property():
         soep.append(json.loads(SoeProperty[i]))
     soeproperty = []
     for j in range(len(soep[1])):
-        soepstruct = SOEArea.DxPropertySOE(int(soep[0][j]), soep[1][j].encode("utf-8"),
-                                           soep[2][j].encode("utf-8"), int(soep[3][j]))
+        ID = soep[0][j]
+        name = soep[1][j]
+        describe = soep[2][j]
+        level = soep[3][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = "请添加SOE名称"
+        if describe == "":
+            describe = "请描述SOE"
+        if level == "":
+            level = 0
+        soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
+                                           describe.encode("utf-8"), int(level))
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
     return '保存成功!'
