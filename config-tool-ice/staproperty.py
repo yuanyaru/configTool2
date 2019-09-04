@@ -40,9 +40,7 @@ def set_station_property():
     stap = []
     for j in range(len(stationp[6])):
         ID = stationp[0][j]
-        print ID
         name = stationp[1][j]
-        print name
         describe = stationp[2][j]
         ruleID = stationp[3][j]
         address = stationp[4][j]
