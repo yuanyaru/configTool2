@@ -39,10 +39,33 @@ def set_station_property():
         stationp.append(json.loads(StationProperty[i]))
     stap = []
     for j in range(len(stationp[6])):
-        spstruct = StationArea.DxPropertyStation(int(stationp[0][j]), stationp[1][j].encode("utf-8"),
-                                                 stationp[2][j].encode("utf-8"), int(stationp[3][j]),
-                                                 stationp[4][j].encode("utf-8"), int(stationp[5][j]),
-                                                 int(stationp[6][j]))
+        ID = stationp[0][j]
+        print ID
+        name = stationp[1][j]
+        print name
+        describe = stationp[2][j]
+        ruleID = stationp[3][j]
+        address = stationp[4][j]
+        PORT = stationp[5][j]
+        role = stationp[6][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = ""
+        if describe == "":
+            describe = ""
+        if ruleID == "":
+            ruleID = 1
+        if address == "":
+            address = ""
+        if PORT == "":
+            PORT = 60000
+        if role == "":
+            role = 1
+        spstruct = StationArea.DxPropertyStation(int(ID), name.encode("utf-8"),
+                                                 describe.encode("utf-8"), int(ruleID),
+                                                 address.encode("utf-8"), int(PORT),
+                                                 int(role))
         stap.append(spstruct)
     # spstruct = StationArea.DxPropertyStation(99, "station", "station111", 19,
     #                                          "192.168.100.124", 29, 39)
