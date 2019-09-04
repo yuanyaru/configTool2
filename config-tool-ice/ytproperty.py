@@ -39,11 +39,38 @@ def set_yt_property():
         ytp.append(json.loads(YtProperty[i]))
     ytproperty = []
     for j in range(len(ytp[1])):
-        ytpstruct = YTArea.DxPropertyYT(int(ytp[0][j]), ytp[1][j].encode("utf-8"),
-                                        ytp[2][j].encode("utf-8"), ytp[3][j].encode("utf-8"),
-                                        float(ytp[4][j]), float(ytp[5][j]),
-                                        ytp[6][j].encode("utf-8"), float(ytp[7][j]),
-                                        float(ytp[8][j]))
+        ID = ytp[0][j]
+        name = ytp[1][j]
+        describe = ytp[2][j]
+        unit = ytp[3][j]
+        kval = ytp[4][j]
+        bval = ytp[5][j]
+        address = ytp[6][j]
+        uplimt = ytp[7][j]
+        downlimt = ytp[8][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = "请添加遥调名称"
+        if describe == "":
+            describe = "请描述遥调"
+        if unit == "":
+            unit = "请添加单位"
+        if kval == "":
+            kval = 1.0
+        if bval == "":
+            bval = 0.0
+        if address == "":
+            address = "0"
+        if uplimt == "":
+            uplimt = 2000.0
+        if downlimt == "":
+            downlimt = 0.0
+        ytpstruct = YTArea.DxPropertyYT(int(ID), name.encode("utf-8"),
+                                        describe.encode("utf-8"), unit.encode("utf-8"),
+                                        float(kval), float(bval),
+                                        address.encode("utf-8"), float(uplimt),
+                                        float(downlimt))
         ytproperty.append(ytpstruct)
     DataCommand.RPCSetYTProperty(station, ytproperty)
     return '保存成功!'
