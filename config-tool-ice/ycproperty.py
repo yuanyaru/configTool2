@@ -39,11 +39,38 @@ def set_yc_property():
         ycp.append(json.loads(YcProperty[i]))
     ycproperty = []
     for j in range(len(ycp[1])):
-        ycpstruct = YCArea.DxPropertyYC(int(ycp[0][j]), ycp[1][j].encode("utf-8"),
-                                        ycp[2][j].encode("utf-8"), ycp[3][j].encode("utf-8"),
-                                        float(ycp[4][j]), float(ycp[5][j]),
-                                        ycp[6][j].encode("utf-8"), float(ycp[7][j]),
-                                        float(ycp[8][j]))
+        ID = ycp[0][j]
+        name = ycp[1][j]
+        describe = ycp[2][j]
+        unit = ycp[3][j]
+        kval = ycp[4][j]
+        bval = ycp[5][j]
+        address = ycp[6][j]
+        uplimt = ycp[7][j]
+        downlimt = ycp[8][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = "请添加遥测名称"
+        if describe == "":
+            describe = "请描述遥测"
+        if unit == "":
+            unit = "请添加单位"
+        if kval == "":
+            kval = 1.0
+        if bval == "":
+            bval = 0.0
+        if address == "":
+            address = "0"
+        if uplimt == "":
+            uplimt = 2000.0
+        if downlimt == "":
+            downlimt = 0.0
+        ycpstruct = YCArea.DxPropertyYC(int(ID), name.encode("utf-8"),
+                                        describe.encode("utf-8"), unit.encode("utf-8"),
+                                        float(kval), float(bval),
+                                        address.encode("utf-8"), float(uplimt),
+                                        float(downlimt))
         ycproperty.append(ycpstruct)
     DataCommand.RPCSetYCProperty(station, ycproperty)
     return '保存成功!'
