@@ -49,15 +49,15 @@ def set_station_property():
         PORT = stationp[5][j]
         role = stationp[6][j]
         if ID == "":
-            ID = 1000
+            ID = 100
         if name == "":
-            name = ""
+            name = "请填写厂站名"
         if describe == "":
-            describe = ""
+            describe = "请描述厂站"
         if ruleID == "":
             ruleID = 1
         if address == "":
-            address = ""
+            address = "请添加地址信息"
         if PORT == "":
             PORT = 60000
         if role == "":
