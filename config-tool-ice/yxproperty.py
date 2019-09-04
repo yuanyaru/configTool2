@@ -40,12 +40,48 @@ def set_yx_property():
         yxp.append(json.loads(YxProperty[i]))
     yxproperty = []
     for j in range(len(yxp[1])):
-        yxpstruct = YXArea.DxPropertyYX(int(yxp[0][j]), yxp[1][j].encode("utf-8"),
-                                        yxp[2][j].encode("utf-8"), int(yxp[3][j]),
-                                        int(yxp[4][j]), int(yxp[5][j]),
-                                        int(yxp[6][j]), int(yxp[7][j]),
-                                        int(yxp[8][j]), yxp[9][j].encode("utf-8"),
-                                        yxp[10][j].encode("utf-8"), yxp[11][j].encode("utf-8"))
+        ID = yxp[0][j]
+        name = yxp[1][j]
+        describe = yxp[2][j]
+        ASDU = yxp[3][j]
+        wordPos = yxp[4][j]
+        bitPos = yxp[5][j]
+        bitLength = yxp[6][j]
+        LinkPoint1 = yxp[7][j]
+        LinkPoint2 = yxp[8][j]
+        OneToZero = yxp[9][j]
+        ZeroToOne = yxp[10][j]
+        address = yxp[11][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = "请添加遥信名称"
+        if describe == "":
+            describe = "请描述遥信"
+        if ASDU == "":
+            ASDU = 0
+        if wordPos == "":
+            wordPos = 0
+        if bitPos == "":
+            bitPos = 0
+        if bitLength == "":
+            bitLength = 1
+        if LinkPoint1 == "":
+            LinkPoint1 = 0
+        if LinkPoint2 == "":
+            LinkPoint2 = 0
+        if OneToZero == "":
+            OneToZero = "由分到合"
+        if ZeroToOne == "":
+            ZeroToOne = "由合到分"
+        if address == "":
+            address = "0"
+        yxpstruct = YXArea.DxPropertyYX(int(ID), name.encode("utf-8"),
+                                        describe.encode("utf-8"), int(ASDU),
+                                        int(wordPos), int(bitPos),
+                                        int(bitLength), int(LinkPoint1),
+                                        int(LinkPoint2), OneToZero.encode("utf-8"),
+                                        ZeroToOne.encode("utf-8"), address.encode("utf-8"))
         yxproperty.append(yxpstruct)
     DataCommand.RPCSetYXProperty(station, yxproperty)
     return '保存成功!'
