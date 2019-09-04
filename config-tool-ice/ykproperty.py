@@ -39,11 +39,41 @@ def set_yk_property():
         ykp.append(json.loads(YkProperty[i]))
     ykproperty = []
     for j in range(len(ykp[1])):
-        ykpstruct = YKArea.DxPropertyYK(int(ykp[0][j]), ykp[1][j].encode("utf-8"),
-                                        ykp[2][j].encode("utf-8"), int(ykp[3][j]),
-                                        int(ykp[4][j]), int(ykp[5][j]),
-                                        int(ykp[6][j]), int(ykp[7][j]),
-                                        int(ykp[8][j]), ykp[9][j].encode("utf-8"))
+        ID = ykp[0][j]
+        name = ykp[1][j]
+        describe = ykp[2][j]
+        ASDU = ykp[3][j]
+        wordPos = ykp[4][j]
+        bitPos = ykp[5][j]
+        bitLength = ykp[6][j]
+        EnablePoint = ykp[7][j]
+        EnableValue = ykp[8][j]
+        address = ykp[9][j]
+        if ID == "":
+            ID = 1000
+        if name == "":
+            name = "请添加遥控名称"
+        if describe == "":
+            describe = "请描述遥控"
+        if ASDU == "":
+            ASDU = 0
+        if wordPos == "":
+            wordPos = 0
+        if bitPos == "":
+            bitPos = 0
+        if bitLength == "":
+            bitLength = 1
+        if EnablePoint == "":
+            EnablePoint = 0
+        if EnableValue == "":
+            EnableValue = 0
+        if address == "":
+            address = "0"
+        ykpstruct = YKArea.DxPropertyYK(int(ID), name.encode("utf-8"),
+                                        describe.encode("utf-8"), int(ASDU),
+                                        int(wordPos), int(bitPos),
+                                        int(bitLength), int(EnablePoint),
+                                        int(EnableValue), address.encode("utf-8"))
         ykproperty.append(ykpstruct)
     DataCommand.RPCSetYKProperty(station, ykproperty)
     return '保存成功!'
