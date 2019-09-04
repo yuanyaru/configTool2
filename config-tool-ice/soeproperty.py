@@ -47,7 +47,7 @@ def set_soe_property():
         if describe == "":
             describe = "请描述SOE"
         if level == "":
-            level = 0
+            level = 1
         soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
                                            describe.encode("utf-8"), int(level))
         soeproperty.append(soepstruct)
