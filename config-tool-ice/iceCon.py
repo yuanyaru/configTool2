@@ -5,6 +5,7 @@ import sys
 import traceback
 import Ice
 Ice.loadSlice("./ice-sqlite.ice")
+# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import CommandArea
 
 

@@ -6,6 +6,7 @@ from iceCon import ice_con
 import json
 import Ice
 Ice.loadSlice("./ice-sqlite.ice")
+# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import YCArea
 
 yc_blu = Blueprint('yc', __name__)
