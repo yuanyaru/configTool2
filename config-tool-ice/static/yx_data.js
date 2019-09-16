@@ -37,6 +37,12 @@ $(document).ready(function () {
     });
 
     $("#browser").treeview();
+
+    var monitoring_url = document.getElementById("monitoring_id");
+    monitoring_url.addEventListener("click", function () {
+        url_value = "http://" + setURL().monitoring_IP + ":" + setURL().monitoring_port + "/THPBuilder/viewer.html";
+        monitoring_url.setAttribute("href", url_value);
+    })
 });
 
 function show_yx_table() {
