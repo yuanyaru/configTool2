@@ -7,14 +7,17 @@ import Ice
 Ice.loadSlice("./ice-sqlite.ice")
 # Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import CommandArea
+from iceConfig import setIce
 
 
 def ice_con():
     ic = None
     status = 0
+    ice_IP = setIce()["ice_IP"]
+    ice_port = setIce()["ice_port"]
     try:
         ic = Ice.initialize(sys.argv)
-        base = ic.stringToProxy("DataCommand:ws -h 192.168.100.170 -p 10010")
+        base = ic.stringToProxy("DataCommand:ws -h " + ice_IP + " -p " + ice_port)
         DataCommand = CommandArea.DataCommandPrx.checkedCast(base)
         if not DataCommand:
             raise RuntimeError("Invalid proxy")
