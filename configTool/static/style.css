@@ -46,17 +46,16 @@ body{
     text-align:center;
     padding:5px;
 }
-table {
-	border-collapse: collapse;
-}
+table {border-collapse: collapse;}
 th, td {
 	border: solid 1px #6D6D6D;
 	padding: 5px 10px;
 }
 .mt-sm {margin-top: 8px;}
-li {
-    font-size:12px;
-}
-a {
-    text-decoration: none;
-}
+li {font-size:12px;}
+a {text-decoration: none;}
+.span0 {font-size:50px}
+.span1 {float:right;margin-right:40px;margin-top:22px;}
+.span2 {float:left;margin-left:40px;margin-top:22px;}
+.span3 {float:left;margin-left:20px;margin-top:22px;}
+#staId {display: none;}
