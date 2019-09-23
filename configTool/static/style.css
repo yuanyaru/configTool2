@@ -58,4 +58,5 @@ a {text-decoration: none;}
 .span1 {float:right;margin-right:40px;margin-top:22px;}
 .span2 {float:left;margin-left:40px;margin-top:22px;}
 .span3 {float:left;margin-left:20px;margin-top:22px;}
-#staId {display: none;}
+#staId, #stafile {display: none;}
+#monitoring_id, #refresh {color: white;}

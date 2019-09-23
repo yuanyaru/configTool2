@@ -31,8 +31,8 @@
 <div id="header">
     <span class="span0">点表配置工具</span>
     <span class="span1" id="time"><span></span>年<span></span>月<span></span>日<span></span>时<span></span>分<span></span>秒</span>
-    <span class="span2"><a id="monitoring_id" style="color: white;">监控界面</a></span>
-    <span class="span3"><a href="#" onClick="window.location.reload()" style="color: white;">刷新</a></span>
+    <span class="span2"><a id="monitoring_id">监控界面</a></span>
+    <span class="span3"><a id="refresh" href="#" onClick="window.location.reload()">刷新</a></span>
 </div>
 
 <div id="nav">
@@ -73,7 +73,7 @@
     <fieldset>
         <legend>厂站数据</legend>
         <span class="mt-sm">
-        <input type="file" id="stafile" style="display:none;" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <input type="file" id="stafile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
         <a href="javascript:selectStaFile()">加载本地excel文件</a>
         </span>
         <input type="button" onClick="set_sta_data();" value="保存"/>
