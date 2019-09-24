@@ -1,4 +1,19 @@
 var stationId;
+var stationName;
+function yxTableClick() {
+    var elems = document.getElementsByName("yx");
+    for(var i=0;i<elems.length;i++){
+        elems[i].addEventListener('click',function(evt){
+            clearYxTable();
+            // jquery对象
+            var elm = $(this).parents("li")["1"];
+            stationId = $(elm).children().eq(1).text();
+            stationName = $(elm).children().eq(2).text();
+            show_yx_table();
+        })
+    }
+}
+
 $(document).ready(function () {
     var ss=document.getElementById('time').getElementsByTagName('span');
     function changeTime() {
@@ -15,16 +30,7 @@ $(document).ready(function () {
         changeTime();
     },1000)
 
-    var elems = document.getElementsByName("yx");
-    for(var i=0;i<elems.length;i++){
-        elems[i].addEventListener('click',function(evt){
-            clearYxTable();
-            // jquery对象
-            var elm = $(this).parents("li")["1"];
-            stationId = $(elm).children().eq(1).text();
-            show_yx_table();
-        })
-    }
+    yxTableClick();
 
     $("#contect").click(function () {
         window.confirm("感谢您的使用 ！\n" +
@@ -46,6 +52,8 @@ $(document).ready(function () {
 });
 
 function show_yx_table() {
+    document.getElementById("sta_name").innerText="---"+ stationName;
+
     document.getElementById("sta_table").style.display="none";
     document.getElementById("yc_table").style.display="none";
 　　document.getElementById("yx_table").style.display="block";

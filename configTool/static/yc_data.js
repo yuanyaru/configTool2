@@ -1,5 +1,6 @@
 var stationId;
-$(document).ready(function () {
+var stationName;
+function ycTableClick() {
     var elems = document.getElementsByName("yc");
     for(var i=0;i<elems.length;i++){
         elems[i].addEventListener('click',function(evt){
@@ -7,12 +8,18 @@ $(document).ready(function () {
             // jquery对象
             var elm = $(this).parents("li")["1"];
             stationId = $(elm).children().eq(1).text();
+            stationName = $(elm).children().eq(2).text();
             show_yc_table();
         })
     }
+}
+$(document).ready(function () {
+    ycTableClick();
 });
 
 function show_yc_table() {
+    document.getElementById("sta_name").innerText="---"+ stationName;
+
     document.getElementById("sta_table").style.display="none";
     document.getElementById("yc_table").style.display="block";
 　　document.getElementById("yx_table").style.display="none";
