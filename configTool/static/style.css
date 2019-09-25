@@ -15,16 +15,16 @@
     left: 0px;
     top: 70px;
     height:1000px;
-    width:200px;
+    width:280px;
     float:left;
     padding:5px;
     overflow: auto;
 }
 #section {
     position: fixed;
-    left: 205px;
+    left: 285px;
     top: 70px;
-    width: 1700px;
+    width: 1620px;
     float: left;
     padding: 5px;
     height: 808px;
@@ -49,8 +49,8 @@ th, td {
 	border: solid 1px #6D6D6D;
 	padding: 5px 10px;
 }
-li {
-    font-size: 12px;
+.folder, .file {
+    font-size: 16px;
 }
 a {
     text-decoration: none;
@@ -78,6 +78,7 @@ input[type=button] {
     margin-top: 22px;
 }
 .span4 {font-size: 16px}
+
 #about {
     float: right;
     margin-right: 40px;
