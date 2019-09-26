@@ -15,7 +15,7 @@
     position: fixed;
     left: 0px;
     top: 80px;
-    height:800px;
+    bottom: 50px;
     width:280px;
     float:left;
     padding:5px;
@@ -24,11 +24,12 @@
 #section {
     position: fixed;
     left: 285px;
+    right: 0px;
+    /*width: 1620px;*/
     top: 80px;
-    width: 1620px;
+    bottom: 50px;
     float: left;
     padding: 5px;
-    height: 800px;
     overflow: auto;
 }
 #footer {
