@@ -7,6 +7,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/xlsx.core.min.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery.treeview.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/top.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_data.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_excel.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_table_sort.js')}}"></script>
@@ -281,7 +282,9 @@
     </fieldset>
     <input type="button" onclick="deleteSoeRow();" value="-"/>
     <input type="button" onclick="addSoeRow();" value="+"/>
-</div>
+    </div>
+
+    <div id="to_top" title="返回顶部"><img src="../static/css/img/rocket-top.jpg"></div>
 </div>
 
 <div id="footer">

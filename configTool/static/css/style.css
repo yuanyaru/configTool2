@@ -101,3 +101,11 @@ input[type=button] {
 .legend {
     font-weight: bold;
 }
+#to_top{
+    width:15px;
+    height:18px;
+    float:right;
+    margin-right:15px;
+    cursor:pointer;
+    /*display:none;*/
+}
