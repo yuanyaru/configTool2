@@ -107,5 +107,5 @@ input[type=button] {
     float:right;
     margin-right:15px;
     cursor:pointer;
-    /*display:none;*/
+    display:none;
 }
