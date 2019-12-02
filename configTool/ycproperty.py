@@ -22,7 +22,7 @@ def get_yc_property_send():
     for i in range(len(result)):
         ycproperty.append({"id": result[i].ID, "name": result[i].name,
                            "describe": result[i].describe, "unit": result[i].unit,
-                           "kval": result[i].kval, "bval": result[i].bval,
+                           "kval": round(result[i].kval, 7), "bval": round(result[i].bval, 7),
                            "address": result[i].address, "uplimt": result[i].uplimt,
                            "downlimt": result[i].downlimt})
     return json.dumps(ycproperty)
@@ -69,7 +69,7 @@ def set_yc_property():
             downlimt = 0.0
         ycpstruct = YCArea.DxPropertyYC(int(ID), name.encode("utf-8"),
                                         describe.encode("utf-8"), unit.encode("utf-8"),
-                                        float(kval), float(bval),
+                                        round(float(kval), 7), round(float(bval), 7),
                                         address.encode("utf-8"), float(uplimt),
                                         float(downlimt))
         ycproperty.append(ycpstruct)
