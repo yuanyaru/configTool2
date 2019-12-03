@@ -10,9 +10,9 @@
     padding: 5px;
 }
 #nav {
+    position: fixed;
     line-height: 30px;
     background-color: #eeeeee;
-    position: fixed;
     left: 0px;
     top: 60px;
     bottom: 35px;
