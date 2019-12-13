@@ -40,35 +40,35 @@
     <span class="span4" id="sta_name"></span>
     <span class="span1" id="time"><span></span>年<span></span>月<span></span>日<span></span>时<span></span>分<span></span>秒</span>
     <span class="span2"><a id="monitoring_id">监控界面</a></span>
-    <span class="span3"><a id="refresh" href="#" onClick="window.location.reload()">刷新</a></span>
+    <span class="span3"><a id="refresh" href="#" onclick="window.location.reload()">刷新</a></span>
 </div>
 
 <div id="nav">
    <ul id="browser" class="filetree treeview-famfamfam">
    <ul id = "sta">
 		<li id="station" class="closed">
-            <span class="folder" onClick="show_sta_table()">厂站列表</span>
+            <span class="folder" onclick="show_sta_table()">厂站列表</span>
             {% for i in range(staLen) %}
 			    <ul>
-				<li class="closed">
-                    <span class="folder" id="staId">{{ staValue[i].ID }}</span>
-                    <span class="folder" id="staName">{{ staValue[i].name }}</span>
-					<ul>
-						<li><span class="file" name="yx">遥信</span></li>
-					</ul>
-					<ul>
-						<li><span class="file" name="yc">遥测</span></li>
-					</ul>
-					<ul>
-						<li><span class="file" name="yk">遥控</span></li>
-					</ul>
-					<ul>
-						<li><span class="file" name="yt">遥调</span></li>
-					</ul>
-					<ul>
-						<li><span class="file" name="soe">SOE</span></li>
-					</ul>
-				</li>
+                    <li class="closed">
+                        <span class="folder" id="staId">{{ staValue[i].ID }}</span>
+                        <span class="folder" id="staName">{{ staValue[i].name }}</span>
+                        <ul>
+                            <li><span class="file" name="yx">遥信</span></li>
+                        </ul>
+                        <ul>
+                            <li><span class="file" name="yc">遥测</span></li>
+                        </ul>
+                        <ul>
+                            <li><span class="file" name="yk">遥控</span></li>
+                        </ul>
+                        <ul>
+                            <li><span class="file" name="yt">遥调</span></li>
+                        </ul>
+                        <ul>
+                            <li><span class="file" name="soe">SOE</span></li>
+                        </ul>
+                    </li>
                 </ul>
             {% endfor %}
 		</li>

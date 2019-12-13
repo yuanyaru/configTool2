@@ -16,7 +16,7 @@ def ice_con():
     ice_IP = setIce()["ice_IP"]
     ice_port = setIce()["ice_port"]
     try:
-        ic = Ice.initialize(sys.argv)
+        ic = Ice.initialize(['--Ice.MessageSizeMax=5120'])
         base = ic.stringToProxy("DataCommand:ws -h " + ice_IP + " -p " + ice_port)
         DataCommand = CommandArea.DataCommandPrx.checkedCast(base)
         if not DataCommand:
