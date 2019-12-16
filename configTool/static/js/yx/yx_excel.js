@@ -57,10 +57,8 @@ $(function() {
             temp.push($(this).html());
         })
         temp.shift(); // 移除第一个
-        // console.log(temp);
         csv.push(temp.join(','));
     });
-    console.log(csv);
     csv.shift();
     return csv.join('\n');
 }
@@ -72,11 +70,8 @@ function csv2sheet(csv) {
     console.log(csv);
     csv.forEach(function(row, i) {
         row = row.split(',');
-        console.log(row)
         if(i == 0) sheet['!ref'] = 'A1:'+String.fromCharCode(65+row.length-1)+(csv.length-1);
-        console.log(row)
         row.forEach(function(col, j) {
-            console.log(col);
             sheet[String.fromCharCode(65+j)+(i+1)] = {v: col};
         });
     });
@@ -107,7 +102,6 @@ function sheet2blob(sheet, sheetName) {
         for (var i=0; i!=s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
         return buf;
     }
-    console.log(blob);
     return blob;
 }
 
@@ -136,7 +130,7 @@ function openDownloadDialog(url, saveName) {
 
 // 把table数据导出到excel中
 function exportExcel_yx() {
-/*    var csv = table2csv($('#result table')[0]);
+    /*var csv = table2csv($('table')[2]);
     var sheet = csv2sheet(csv);
     var blob = sheet2blob(sheet);
     openDownloadDialog(blob, '导出.xlsx');*/
