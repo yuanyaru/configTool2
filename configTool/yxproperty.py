@@ -28,9 +28,7 @@ def get_yx_property_send():
                            "ZeroToOne": result[i].ZeroToOne, "address": result[i].address})
     return json.dumps(yxproperty)
 
-
 # 添加、修改(遥信属性)
-
 @yx_blu.route('/set_yx', methods=['POST'])
 def set_yx_property():
     DataCommand = ice_con()
@@ -162,7 +160,6 @@ def set_yx_property():
     #     yxproperty.append(yxpstruct)
     DataCommand.RPCSetYXProperty(station, yxproperty)
     return '保存成功!'
-
 
 """
 @yx_blu.route('/set_yx', methods=['POST'])
