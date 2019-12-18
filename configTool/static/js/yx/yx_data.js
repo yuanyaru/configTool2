@@ -2,15 +2,15 @@ var stationId;
 var stationName;
 function yxTableClick() {
     var elems = document.getElementsByName("yx");
-    for(var i=0;i<elems.length;i++){
-        elems[i].addEventListener('click',function(evt){
+    for (var i=0;i<elems.length;i++) {
+        elems[i].addEventListener('click',function(evt) {
             clearYxTable();
             // jquery对象
             var elm = $(this).parents("li")["1"];
             stationId = $(elm).children().eq(1).text();
             stationName = $(elm).children().eq(2).text();
             show_yx_table();
-        })
+        });
     }
 }
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
         ss[5].innerHTML = time.getSeconds().toString();
     }
     changeTime();
-    setInterval(function(){
+    setInterval(function() {
         changeTime();
     },1000)
 
@@ -71,7 +71,7 @@ function clearYxTable() {
 
 // 显示数据库的数据
 function show_db_yx_data() {
-    $.post("/yx_data", {'stationId': stationId}, function(res){
+    $.post("/yx_data", {'stationId': stationId}, function(res) {
         clearYxTable();
         var resLen = res.length;
         if (resLen > 2) {
@@ -102,7 +102,7 @@ function show_db_yx_data() {
 }
 
 // 在表格尾部增添一行
-function addYxRow(){
+function addYxRow() {
     str = "<tr><td><input type='checkbox' class='i-checks' name='yx_ID'/>"
             + "</td><td name='td2'>"
             + "</td><td>"
@@ -221,10 +221,10 @@ function delete_yx_data() {
 
 // 全选按钮
 $(function() {
-	$("#selectAllYx").bind("click",function(){
-		if($(this).prop("checked")){
+	$("#selectAllYx").bind("click",function() {
+		if($(this).prop("checked")) {
 			$("input[type='checkbox']").not(this).prop("checked",true);
-		}else{
+		} else {
 			$("input[type='checkbox']").not(this).prop("checked",false);
 		}
 	});
