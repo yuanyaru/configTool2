@@ -194,7 +194,7 @@ function set_yx_data() {
 function delete_yx_data() {
     var yx_IDs = new Array();
     $("input[type='checkbox'][name='yx_ID']").each(function() {
-        if(this.checked) {
+        if (this.checked) {
             var yx_ID = $(this).parents('tr').children().eq(1).text();
             yx_IDs.push(yx_ID)
         }
@@ -202,7 +202,7 @@ function delete_yx_data() {
 
     var yx_IDs_len = yx_IDs.length;
     if (yx_IDs_len > 0) {
-        if(confirm("确认要删除吗？")) {
+        if (confirm("确认要删除吗？")) {
             $.post("/delete_yx", {
                 'ids': JSON.stringify(yx_IDs),
                 'stationId': stationId
