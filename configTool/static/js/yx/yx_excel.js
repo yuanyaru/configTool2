@@ -50,17 +50,20 @@ $(function() {
 	});
 });
 
-/*function table2csv(table) {
+/*
+function table2csv(table) {
     var csv = [];
     console.log(table);
     $(table).find('tr').each(function() {
         var temp = [];
         $(this).find('td').each(function() {
             temp.push($(this).html());
-        })
-        temp.shift(); // 移除第一个
+        });
+         // 移除第一列复选框
+        temp.shift();
         csv.push(temp.join(','));
     });
+    console.log(csv);
     csv.shift();
     return csv.join('\n');
 }
@@ -79,7 +82,8 @@ function csv2sheet(csv) {
     });
     console.log(sheet);
     return sheet;
-}*/
+}
+*/
 
 // 将一个sheet转成最终的excel文件的blob对象，然后利用URL.createObjectURL下载
 function sheet2blob(sheet, sheetName) {
@@ -137,5 +141,5 @@ function exportExcel_yx() {
     var blob = sheet2blob(sheet);
     openDownloadDialog(blob, '导出.xlsx');*/
     var sheet = XLSX.utils.table_to_sheet($('table')[2]);
-    openDownloadDialog(sheet2blob(sheet), '导出.xlsx');
+    openDownloadDialog(sheet2blob(sheet), 'yx.xlsx');
 }

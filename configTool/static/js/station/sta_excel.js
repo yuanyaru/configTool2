@@ -40,5 +40,5 @@ $(function() {
 // 把table数据导出到excel中
 function exportExcel_sta() {
     var sheet = XLSX.utils.table_to_sheet($('table')[0]);
-    openDownloadDialog(sheet2blob(sheet), '导出.xlsx');
+    openDownloadDialog(sheet2blob(sheet), 'station.xlsx');
 }

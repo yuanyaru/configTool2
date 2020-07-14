@@ -41,5 +41,5 @@ $(function() {
 // 把table数据导出到excel中
 function exportExcel_yc() {
     var sheet = XLSX.utils.table_to_sheet($('table')[1]);
-    openDownloadDialog(sheet2blob(sheet), '导出.xlsx');
+    openDownloadDialog(sheet2blob(sheet), 'yc.xlsx');
 }
