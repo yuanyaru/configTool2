@@ -11,6 +11,7 @@ import YCArea
 
 yc_blu = Blueprint('yc', __name__)
 
+
 # 查找(遥测属性)
 @yc_blu.route('/yc_data', methods=['POST'])
 def get_yc_property_send():
@@ -26,6 +27,7 @@ def get_yc_property_send():
                            "address": result[i].address, "uplimt": result[i].uplimt,
                            "downlimt": result[i].downlimt})
     return json.dumps(ycproperty)
+
 
 # 添加、修改(遥测属性)
 @yc_blu.route('/set_yc', methods=['POST'])
@@ -75,6 +77,7 @@ def set_yc_property():
         ycproperty.append(ycpstruct)
     DataCommand.RPCSetYCProperty(station, ycproperty)
     return '保存成功!'
+
 
 # 删除(遥测属性)
 @yc_blu.route('/delete_yc', methods=['POST'])

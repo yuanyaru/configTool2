@@ -8,4 +8,3 @@ def setIce():
         "ice_port": "10010"
     }
     return iceConfig
-

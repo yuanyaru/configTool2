@@ -11,6 +11,7 @@ import YTArea
 
 yt_blu = Blueprint('yt', __name__)
 
+
 # 查找(遥调属性)
 @yt_blu.route('/yt_data', methods=['POST'])
 def get_yt_property_send():
@@ -26,6 +27,7 @@ def get_yt_property_send():
                            "address": result[i].address, "uplimt": result[i].uplimt,
                            "downlimt": result[i].downlimt})
     return json.dumps(ytproperty)
+
 
 # 添加、修改(遥调属性)
 @yt_blu.route('/set_yt', methods=['POST'])
@@ -75,6 +77,7 @@ def set_yt_property():
         ytproperty.append(ytpstruct)
     DataCommand.RPCSetYTProperty(station, ytproperty)
     return '保存成功!'
+
 
 # 删除(遥调属性)
 @yt_blu.route('/delete_yt', methods=['POST'])

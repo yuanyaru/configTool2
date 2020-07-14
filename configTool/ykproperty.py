@@ -11,6 +11,7 @@ import YKArea
 
 yk_blu = Blueprint('yk', __name__)
 
+
 # 查找(遥控属性)
 @yk_blu.route('/yk_data', methods=['POST'])
 def get_yk_property_send():
@@ -26,6 +27,7 @@ def get_yk_property_send():
                            "bitLength": result[i].bitLength, "EnablePoint": result[i].EnablePoint,
                            "EnableValue": result[i].EnableValue, "address": result[i].address})
     return json.dumps(ykproperty)
+
 
 # 添加、修改(遥控属性)
 @yk_blu.route('/set_yk', methods=['POST'])
@@ -78,6 +80,7 @@ def set_yk_property():
         ykproperty.append(ykpstruct)
     DataCommand.RPCSetYKProperty(station, ykproperty)
     return '保存成功!'
+
 
 # 删除(遥控属性)
 @yk_blu.route('/delete_yk', methods=['POST'])

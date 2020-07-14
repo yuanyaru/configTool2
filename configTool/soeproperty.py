@@ -11,6 +11,7 @@ import SOEArea
 
 soe_blu = Blueprint('soe', __name__)
 
+
 # 查找(SOE属性)
 @soe_blu.route('/soe_data', methods=['POST'])
 def get_soe_property_send():
@@ -23,6 +24,7 @@ def get_soe_property_send():
         soeproperty.append({"ID": result[i].ID, "name": result[i].name,
                            "describe": result[i].describe, "level": result[i].level})
     return json.dumps(soeproperty)
+
 
 # 添加、修改(SOE属性)
 @soe_blu.route('/set_soe', methods=['POST'])
@@ -54,6 +56,7 @@ def set_soe_property():
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
     return '保存成功!'
+
 
 # 删除(SOE属性)
 @soe_blu.route('/delete_soe', methods=['POST'])

@@ -17,6 +17,7 @@ def get_station_property():
     status, result = DataCommand.RPCGetStationProperty()
     return result
 
+
 # 查找(厂站属性)
 @sta_blu.route('/station_data', methods=['GET'])
 def get_station_property_send():
@@ -28,6 +29,7 @@ def get_station_property_send():
                             "address": result[i].address, "PORT": result[i].PORT,
                             "role": result[i].role})
     return json.dumps(staproperty)
+
 
 # 添加、修改(厂站属性)
 @sta_blu.route('/set_station', methods=['POST'])
@@ -71,6 +73,7 @@ def set_station_property():
     # stap.append(spstruct)
     DataCommand.RPCSetStationProperty(stap)
     return '保存成功!'
+
 
 # 删除(厂站属性)
 @sta_blu.route('/delete_station', methods=['POST'])
