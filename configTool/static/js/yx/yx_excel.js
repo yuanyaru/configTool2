@@ -18,8 +18,10 @@ function readWorkbook_yx(workbook) {
 	var worksheet = workbook.Sheets[sheetNames[0]]; // 这里我们只读取第一张sheet
 	var csv = XLSX.utils.sheet_to_csv(worksheet);
 	var rows = csv.split('\n');
+	// 删除表头
 	delete rows[0];
-	rows.pop(); // 最后一行没用的
+	// 最后一行没用的
+	rows.pop();
     clearYxTable();
 	rows.forEach(function(row) {
 	    var html = "";
