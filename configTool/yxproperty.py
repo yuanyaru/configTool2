@@ -11,6 +11,7 @@ import YXArea
 
 yx_blu = Blueprint('yx', __name__)
 
+
 # 查找(遥信属性)
 @yx_blu.route('/yx_data', methods=['POST'])
 def get_yx_property_send():
@@ -27,6 +28,7 @@ def get_yx_property_send():
                            "LinkPoint2": result[i].LinkPoint2, "OneToZero": result[i].OneToZero,
                            "ZeroToOne": result[i].ZeroToOne, "address": result[i].address})
     return json.dumps(yxproperty)
+
 
 # 添加、修改(遥信属性)
 @yx_blu.route('/set_yx', methods=['POST'])
@@ -220,6 +222,7 @@ def set_yx_property():
     DataCommand.RPCSetYXProperty(station, yxproperty)
     return '保存成功!'
 """
+
 
 # 删除(遥信属性)
 @yx_blu.route('/delete_yx', methods=['POST'])
