@@ -1,7 +1,3 @@
-function selectSoeFile() {
-    document.getElementById('soefile').click();
-}
-
 function readWorkbook_soe(workbook) {
 	var sheetNames = workbook.SheetNames; // 工作表名称集合
 	var worksheet = workbook.Sheets[sheetNames[0]]; // 这里我们只读取第一张sheet
@@ -23,20 +19,29 @@ function readWorkbook_soe(workbook) {
 	});
 }
 
-$(function() {
-	document.getElementById('soefile').addEventListener('change', function(e) {
-		var files = e.target.files;
-		if(files.length == 0) return;
-		var f = files[0];
-		if(!/\.xlsx$/g.test(f.name)) {
-			alert('仅支持读取xlsx格式！');
-			return;
-		}
-		readWorkbookFromLocalFile(f, function(workbook) {
-			readWorkbook_soe(workbook);
-		});
+function loadsoeData(e) {
+	var files = e.target.files;
+	if(files.length == 0) return;
+	var f = files[0];
+	if(!/\.xlsx$/g.test(f.name)) {
+		alert('仅支持读取xlsx格式！');
+		return;
+	}
+	readWorkbookFromLocalFile(f, function(workbook) {
+		readWorkbook_soe(workbook);
 	});
-});
+}
+
+// 局部刷新
+function soeload() {
+    $("#soeload").load(location.href+" #soeload");
+}
+
+function selectSoeFile() {
+	soeload();
+	document.getElementById('soefile').click();
+	document.getElementById('soefile').addEventListener('change', loadsoeData);
+}
 
 // 把table数据导出到excel中
 function exportExcel_soe() {

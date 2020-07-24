@@ -1,7 +1,3 @@
-function selectYxFile() {
-    document.getElementById('yxfile').click();
-}
-
 // 读取本地excel文件
 function readWorkbookFromLocalFile(file, callback) {
     var reader = new FileReader();
@@ -23,6 +19,7 @@ function readWorkbook_yx(workbook) {
 	// 最后一行没用的
 	rows.pop();
     clearYxTable();
+    console.log(rows);
 	rows.forEach(function(row) {
 	    var html = "";
 		var columns = row.split(',');
@@ -32,11 +29,36 @@ function readWorkbook_yx(workbook) {
 		});
 		html += '</td></tr>';
 		$("#tBody_yx").append(html);
-	});
+    });
 }
 
-$(function() {
+function loadyxData(e) {
+    var files = e.target.files;
+    if(files.length == 0) return;
+    var f = files[0];
+    if(!/\.xlsx$/g.test(f.name)) {
+        alert('仅支持读取xlsx格式！');
+        return;
+    }
+    readWorkbookFromLocalFile(f, function(workbook) {
+        readWorkbook_yx(workbook);
+    });
+}
+
+// 局部刷新
+function yxload() {
+    $("#yxload").load(location.href+" #yxload");
+}
+
+function selectYxFile() {
+    yxload();
+    document.getElementById('yxfile').click();
+    document.getElementById('yxfile').addEventListener('change', loadyxData);
+}
+
+/*$(function () {
 	document.getElementById('yxfile').addEventListener('change', function(e) {
+	    alert("开始加载数据！！！");
 		var files = e.target.files;
 		if(files.length == 0) return;
 		var f = files[0];
@@ -48,7 +70,7 @@ $(function() {
 			readWorkbook_yx(workbook);
 		});
 	});
-});
+});*/
 
 /*
 function table2csv(table) {

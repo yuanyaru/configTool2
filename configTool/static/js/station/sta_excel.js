@@ -1,7 +1,3 @@
-function selectStaFile() {
-    document.getElementById('stafile').click();
-}
-
 function readWorkbook_sta(workbook) {
 	var sheetNames = workbook.SheetNames; // 工作表名称集合
 	var worksheet = workbook.Sheets[sheetNames[0]]; // 这里我们只读取第一张sheet
@@ -22,20 +18,29 @@ function readWorkbook_sta(workbook) {
 	});
 }
 
-$(function() {
-	document.getElementById('stafile').addEventListener('change', function(e) {
-		var files = e.target.files;
-		if(files.length == 0) return;
-		var f = files[0];
-		if(!/\.xlsx$/g.test(f.name)) {
-			alert('仅支持读取xlsx格式！');
-			return;
-		}
-		readWorkbookFromLocalFile(f, function(workbook) {
-			readWorkbook_sta(workbook);
-		});
+function loadstaData(e) {
+	var files = e.target.files;
+	if(files.length == 0) return;
+	var f = files[0];
+	if(!/\.xlsx$/g.test(f.name)) {
+		alert('仅支持读取xlsx格式！');
+		return;
+	}
+	readWorkbookFromLocalFile(f, function(workbook) {
+		readWorkbook_sta(workbook);
 	});
-});
+}
+
+// 局部刷新
+function staload() {
+    $("#staload").load(location.href+" #staload");
+}
+
+function selectStaFile() {
+	staload();
+	document.getElementById('stafile').click();
+	document.getElementById('stafile').addEventListener('change', loadstaData);
+}
 
 // 把table数据导出到excel中
 function exportExcel_sta() {
