@@ -84,7 +84,7 @@
         <input type="button" onclick="delete_sta_data();" value="删除"/>
         <input type="button" onclick="set_sta_data();" value="保存"/>
         <input type="button" onclick="selectStaFile()" value="加载本地excel文件">
-        <input type="file" id="stafile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="staload"><input type="file" id="stafile"/></div>
         <p></p>
         <p></p>
         <div id="staresult" contenteditable>
@@ -117,7 +117,7 @@
         <input type="button" onclick="delete_yc_data();" value="删除"/>
         <input type="button" onclick="set_yc_data();" value="保存"/>
         <input type="button" onclick="selectYcFile();" value="加载本地excel文件">
-        <input type="file" id="ycfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="ycload"><input type="file" id="ycfile"/></div>
         <p></p>
         <p></p>
         <div id="ycresult" contenteditable>
@@ -151,8 +151,9 @@
         <input type="button" onclick="exportExcel_yx();" value="导出Excel"/>
         <input type="button" onclick="delete_yx_data();" value="删除"/>
         <input type="button" onclick="set_yx_data();" value="保存"/>
+{#        <input type="file" id="yxfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>#}
+        <div id="yxload"><input type="file" id="yxfile"/></div>
         <input type="button" onclick="selectYxFile();" value="加载本地excel文件"/>
-        <input type="file" id="yxfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
         <p></p>
         <p></p>
         <div id="yxresult" contenteditable>
@@ -190,7 +191,7 @@
         <input type="button" onclick="delete_yk_data();" value="删除"/>
         <input type="button" onclick="set_yk_data();" value="保存"/>
         <input type="button" onclick="selectYkFile();" value="加载本地excel文件"/>
-        <input type="file" id="ykfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="ykload"><input type="file" id="ykfile"/></div>
         <p></p>
         <p></p>
         <div id="ykresult" contenteditable>
@@ -226,7 +227,7 @@
         <input type="button" onclick="delete_yt_data();" value="删除">
         <input type="button" onclick="set_yt_data();" value="保存"/>
         <input type="button" onclick="selectYtFile();" value="加载本地excel文件">
-        <input type="file" id="ytfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="ytload"><input type="file" id="ytfile"/></div>
         <p></p>
         <p></p>
         <div id="ytresult" contenteditable>
@@ -261,7 +262,7 @@
         <input type="button" onclick="delete_soe_data();" value="删除"/>
         <input type="button" onclick="set_soe_data();" value="保存"/>
         <input type="button" onclick="selectSoeFile();" value="加载本地excel文件"/>
-        <input type="file" id="soefile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="soeload"><input type="file" id="soefile"/></div>
         <p></p>
         <p></p>
         <div id="soeresult" contenteditable>
