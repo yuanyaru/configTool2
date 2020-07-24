@@ -89,7 +89,7 @@ input[type=button] {
 #staId, #sta_table, #yc_table, #yx_table, #yk_table, #yt_table, #soe_table {
     display: none;
 }
-#stafile, #ycfile, #yxfile, #ykfile, #ytfile, #soefile{
+#staload, #ycload, #yxload, #ykload, #ytload, #soeload{
     display: none;
 }
 #monitoring_id, #refresh {
