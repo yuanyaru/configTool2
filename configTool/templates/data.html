@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common/jquery.treeview.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/icon/iconfont.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/xlsx.core.min.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery.treeview.js')}}"></script>
@@ -38,16 +39,27 @@
 <div id="header">
     <span class="span0">点表配置工具</span>
     <span class="span4" id="sta_name"></span>
-    <span class="span1" id="time"><span></span>年<span></span>月<span></span>日<span></span>时<span></span>分<span></span>秒</span>
-    <span class="span2"><a id="monitoring_id">监控界面</a></span>
-    <span class="span3"><a id="refresh" href="#" onclick="window.location.reload()">刷新</a></span>
+    <span class="span1" id="time"><i class="iconfont icon-time"></i>
+        <span></span>年<span></span>月<span></span>日<span></span>时<span></span>分<span></span>秒
+    </span>
+    <span class="span2"><i class="iconfont icon-monitoring"></i>
+        <a id="monitoring_id">监控界面</a>
+    </span>
+    <span class="span3"><a id="refresh" href="#" onclick="window.location.reload()">
+        <i class="iconfont icon-refresh" title="刷新"></i>刷新
+    </a></span>
 </div>
 
 <div id="nav">
    <ul id="browser" class="filetree treeview-famfamfam">
    <ul id = "sta">
 		<li id="station" class="closed">
-            <span class="folder" onclick="show_sta_table()">厂站列表</span>
+            <span class="folder" onclick="show_sta_table()">厂站列表
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="iconfont icon-station"></i>
+            </span>
             {% for i in range(staLen) %}
 			    <ul>
                     <li class="closed">
@@ -80,11 +92,23 @@
     <div class="row" id="sta_table">
     <fieldset>
         <legend class="legend">厂站数据</legend>
-        <input type="button" onclick="exportExcel_sta();" value="导出Excel"/>
+        {#<input type="button" onclick="exportExcel_sta();" value="导出Excel"/>
         <input type="button" onclick="delete_sta_data();" value="删除"/>
         <input type="button" onclick="set_sta_data();" value="保存"/>
-        <input type="button" onclick="selectStaFile()" value="加载本地excel文件">
+        <input type="button" onclick="selectStaFile()" value="加载本地excel文件">#}
+        <a id="remove_container" onClick="selectStaFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
         <div id="staload"><input type="file" id="stafile"/></div>
+        <a id="remove_container" onClick="set_sta_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a id="remove_container" onClick="delete_sta_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a id="remove_container" onClick="exportExcel_sta()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="staresult" contenteditable>
@@ -113,11 +137,24 @@
     <div class="row" id="yc_table">
     <fieldset>
         <legend class="legend">遥测数据</legend>
-        <input type="button" onclick="exportExcel_yc();" value="导出Excel">
+        {#<input type="button" onclick="exportExcel_yc();" value="导出Excel">
         <input type="button" onclick="delete_yc_data();" value="删除"/>
         <input type="button" onclick="set_yc_data();" value="保存"/>
         <input type="button" onclick="selectYcFile();" value="加载本地excel文件">
+        <div id="ycload"><input type="file" id="ycfile"/></div>#}
+        <a onClick="selectYcFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
         <div id="ycload"><input type="file" id="ycfile"/></div>
+        <a onClick="set_yc_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a onClick="delete_yc_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a onClick="exportExcel_yc()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="ycresult" contenteditable>
@@ -148,12 +185,24 @@
     <div class="row" id="yx_table">
     <fieldset>
         <legend class="legend">遥信数据</legend>
-        <input type="button" onclick="exportExcel_yx();" value="导出Excel"/>
+        {#<input type="button" onclick="exportExcel_yx();" value="导出Excel"/>
         <input type="button" onclick="delete_yx_data();" value="删除"/>
         <input type="button" onclick="set_yx_data();" value="保存"/>
-{#        <input type="file" id="yxfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>#}
         <div id="yxload"><input type="file" id="yxfile"/></div>
-        <input type="button" onclick="selectYxFile();" value="加载本地excel文件"/>
+        <input type="button" onclick="selectYxFile();" value="加载本地excel文件"/>#}
+        <a onClick="selectYxFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
+        <div id="yxload"><input type="file" id="yxfile"/></div>
+        <a onClick="set_yx_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a onClick="delete_yx_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a onClick="exportExcel_yx()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="yxresult" contenteditable>
@@ -187,11 +236,24 @@
     <div class="row" id="yk_table">
     <fieldset>
         <legend class="legend">遥控数据</legend>
-        <input type="button" onclick="exportExcel_yk();" value="导出Excel"/>
+        {#<input type="button" onclick="exportExcel_yk();" value="导出Excel"/>
         <input type="button" onclick="delete_yk_data();" value="删除"/>
         <input type="button" onclick="set_yk_data();" value="保存"/>
         <input type="button" onclick="selectYkFile();" value="加载本地excel文件"/>
+        <div id="ykload"><input type="file" id="ykfile"/></div>#}
+        <a onClick="selectYkFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
         <div id="ykload"><input type="file" id="ykfile"/></div>
+        <a onClick="set_yk_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a onClick="delete_yk_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a onClick="exportExcel_yk()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="ykresult" contenteditable>
@@ -223,11 +285,24 @@
     <div class="row" id="yt_table">
     <fieldset>
         <legend class="legend">遥调数据</legend>
-        <input type="button" onclick="exportExcel_yt();" value="导出Excel">
+        {#<input type="button" onclick="exportExcel_yt();" value="导出Excel">
         <input type="button" onclick="delete_yt_data();" value="删除">
         <input type="button" onclick="set_yt_data();" value="保存"/>
         <input type="button" onclick="selectYtFile();" value="加载本地excel文件">
+        <div id="ytload"><input type="file" id="ytfile"/></div>#}
+        <a onClick="selectYtFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
         <div id="ytload"><input type="file" id="ytfile"/></div>
+        <a onClick="set_yt_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a onClick="delete_yt_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a onClick="exportExcel_yt()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="ytresult" contenteditable>
@@ -258,11 +333,24 @@
     <div class="row" id="soe_table">
     <fieldset>
         <legend class="legend">SOE数据</legend>
-        <input type="button" onclick="exportExcel_soe();" value="导出Excel"/>
+        {#<input type="button" onclick="exportExcel_soe();" value="导出Excel"/>
         <input type="button" onclick="delete_soe_data();" value="删除"/>
         <input type="button" onclick="set_soe_data();" value="保存"/>
         <input type="button" onclick="selectSoeFile();" value="加载本地excel文件"/>
+        <div id="soeload"><input type="file" id="soefile"/></div>#}
+        <a onClick="selectSoeFile()">
+            <i class="iconfont icon-importexcel"></i> 导入
+        </a>
         <div id="soeload"><input type="file" id="soefile"/></div>
+        <a onClick="set_soe_data()">
+            <i class="iconfont icon-save"></i> 保存
+        </a>
+         <a onClick="delete_soe_data()">
+            <i class="iconfont icon-delete"></i> 删除
+        </a>
+        <a onClick="exportExcel_soe()">
+            <i class="iconfont icon-exportexcel"></i> 导出
+        </a>
         <p></p>
         <p></p>
         <div id="soeresult" contenteditable>
@@ -290,8 +378,8 @@
 <div id="footer">
     @2019  西安端怡科技有限公司
     <div id="to_top" title="返回顶部"><img src="../static/css/img/rocket-top.jpg"></div>
-    <span id="about">关于产品</span>
-    <span id="contect">联系我们</span>
+    <span id="about"><i class="iconfont icon-about"></i>&nbsp;&nbsp;关于产品</span>
+    <span id="contect"><i class="iconfont icon-connect"></i>&nbsp;&nbsp;联系我们</span>
 </div>
 </body>
 </html>

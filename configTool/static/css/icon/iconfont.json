@@ -1,0 +1,100 @@
+{
+  "id": "2041410",
+  "name": "configTool",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "376349",
+      "name": "关于",
+      "font_class": "about",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "1239930",
+      "name": "加载",
+      "font_class": "jiazai",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "2380652",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "5878990",
+      "name": "联系人",
+      "font_class": "lianxiren",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "6154396",
+      "name": "保存",
+      "font_class": "baocun",
+      "unicode": "e82a",
+      "unicode_decimal": 59434
+    },
+    {
+      "icon_id": "7069161",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "7318946",
+      "name": "厂站查询",
+      "font_class": "gongchang",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "8776715",
+      "name": "time",
+      "font_class": "icon-test",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "8777372",
+      "name": "refresh",
+      "font_class": "icon-test1",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "12323753",
+      "name": "导入excel",
+      "font_class": "daoruexcel",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "12323757",
+      "name": "导出excel",
+      "font_class": "daochuexcel",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "12730300",
+      "name": "导出EX",
+      "font_class": "daochuEX",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "14160913",
+      "name": "监控",
+      "font_class": "jiankong",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    }
+  ]
+}
