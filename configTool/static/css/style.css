@@ -97,6 +97,7 @@ input[type=button] {
 }
 #staTable, #ycTable, #yxTable, #ykTable, #ytTable, #soeTable {
     background-color: #eeeeee;
+    width: 100%;
 }
 .legend {
     font-weight: bold;
