@@ -15,6 +15,7 @@ function ycTableClick() {
 }
 $(document).ready(function () {
     ycTableClick();
+    yc_tobody();
 });
 
 function show_yc_table() {
@@ -59,7 +60,7 @@ function show_db_yc_data() {
                 $("#tBody_yc").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_yc").innerHTML = "没有遥测数据可显示！！！";
         }
     });
 }

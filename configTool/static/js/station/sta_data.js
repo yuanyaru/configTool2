@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    sta_tobody();
+});
+
 function show_sta_table() {
     document.getElementById("sta_name").innerText="";
 
@@ -69,7 +73,7 @@ function show_db_sta_data() {
                 $("#tBody_sta").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_sta").innerHTML = "没有数据可显示！！！";
         }
     });
 }

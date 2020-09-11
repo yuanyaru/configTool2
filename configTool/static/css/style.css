@@ -102,7 +102,7 @@ input[type=button] {
 .legend {
     font-weight: bold;
 }
-#to_top {
+#yx_to_top, #yc_to_top, #yk_to_top, #yt_to_top, #sta_to_top, #soe_to_top {
     width:15px;
     height:18px;
     float:right;
@@ -110,19 +110,16 @@ input[type=button] {
     cursor:pointer;
     display:none;
 }
-
 table tbody {
     display: block;
     max-height: 62vh;
     overflow-y: scroll;
 }
-
 table thead, tbody tr {
     display: table;
     table-layout: fixed;
     width: 100%;
 }
-
 table thead{
     width: calc( 100% - 1em );
 }

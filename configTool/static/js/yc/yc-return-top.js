@@ -1,5 +1,6 @@
-window.onload = function(){
-    var oTop = document.getElementById("to_top");
+// window.onload = function(){
+function yc_tobody() {
+    var oTop = document.getElementById("yc_to_top");
     //获取可视区域宽度
     var screenw = document.documentElement.clientWidth || document.getElementById("tBody_yc").clientWidth;
     //获取可视区域高度
@@ -12,11 +13,11 @@ window.onload = function(){
         var scrolltop = document.documentElement.scrollTop || document.getElementById("tBody_yc").scrollTop;
         if(scrolltop>0){
             // alert("a");
-            document.getElementById("to_top").style.display="block";
+            document.getElementById("yc_to_top").style.display="block";
             oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
             oTop.style.left = screenw - oTop.offsetWidth +"px";
         } else {
-            document.getElementById("to_top").style.display="none";
+            document.getElementById("yc_to_top").style.display="none";
         }
     };
     oTop.onclick = function(){

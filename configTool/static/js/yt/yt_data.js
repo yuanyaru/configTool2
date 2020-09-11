@@ -16,6 +16,7 @@ function ytTableClick() {
 
 $(document).ready(function () {
     ytTableClick();
+    yt_tobody();
 });
 
 function show_yt_table() {
@@ -60,7 +61,7 @@ function show_db_yt_data() {
                 $("#tBody_yt").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_yt").innerHTML = "没有遥调数据可显示！！！";
         }
     });
 }

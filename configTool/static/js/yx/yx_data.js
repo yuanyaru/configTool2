@@ -49,6 +49,8 @@ $(document).ready(function () {
         url_value = "http://" + setURL().monitoring_IP + ":" + setURL().monitoring_port + "/THPBuilder/viewer.html";
         monitoring_url.setAttribute("href", url_value);
     })
+
+    yx_tobody();
 });
 
 function show_yx_table() {
@@ -96,7 +98,7 @@ function show_db_yx_data() {
                 $("#tBody_yx").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_yx").innerHTML = "没有遥信数据可显示！！！";
         }
     });
 }

@@ -16,6 +16,7 @@ function soeTableClick() {
 
 $(document).ready(function () {
     soeTableClick();
+    soe_tobody();
 });
 
 function show_soe_table() {
@@ -55,7 +56,7 @@ function show_db_soe_data() {
                 $("#tBody_soe").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_soe").innerHTML = "没有事件数据可显示！！！";
         }
     });
 }

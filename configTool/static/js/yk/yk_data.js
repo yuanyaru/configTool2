@@ -15,6 +15,7 @@ function ykTableClick() {
 }
 $(document).ready(function () {
     ykTableClick();
+    yk_tobody();
 });
 
 function show_yk_table() {
@@ -60,7 +61,7 @@ function show_db_yk_data() {
                 $("#tBody_yk").append(str);
             }
         } else {
-            alert("数据库为空，没有数据可显示！");
+            document.getElementById("tBody_yk").innerHTML = "没有遥控数据可显示！！！";
         }
     });
 }
