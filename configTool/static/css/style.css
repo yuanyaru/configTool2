@@ -110,3 +110,22 @@ input[type=button] {
     cursor:pointer;
     display:none;
 }
+
+table tbody {
+    display: block;
+    max-height: 62vh;
+    overflow-y: scroll;
+}
+
+table thead, tbody tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+table thead{
+    width: calc( 100% - 1em );
+}
+tbody tr {
+    width: calc( 100% - 0.01em );
+}
