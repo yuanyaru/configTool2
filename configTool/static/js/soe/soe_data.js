@@ -50,7 +50,8 @@ function show_db_soe_data() {
                 + "</td><td name='td5'>" + res2Json[i].ID
                 + "</td><td>" + res2Json[i].name
                 + "</td><td>" + res2Json[i].describe
-                + "</td><td>" + res2Json[i].level + "</td></tr>";
+                + "</td><td>" + res2Json[i].level
+                + "</td><td>" + res2Json[i].address + "</td></tr>";
 
                 // 追加到table中
                 $("#tBody_soe").append(str);
@@ -65,6 +66,7 @@ function show_db_soe_data() {
 function addSoeRow(){
     str = "<tr><td><input type='checkbox' class='i-checks' name='soe_ID'/>"
             + "</td><td name='td5'>"
+            + "</td><td>"
             + "</td><td>"
             + "</td><td>"
             + "</td><td>"+ "</td></tr>";
@@ -94,7 +96,7 @@ function deleteSoeRow() {
 function set_soe_data() {
     var IDs = new Array(); var names = new Array();
     var describes = new Array(); var levels = new Array();
-    var new_data = new Array();
+    var addresss = new Array(); var new_data = new Array();
 
     $("input[type='checkbox'][name='soe_ID']").each(function() {
         if(this.checked) {
@@ -102,14 +104,16 @@ function set_soe_data() {
             var name = $(this).parents('tr').children().eq(2).text();
             var describe = $(this).parents('tr').children().eq(3).text();
             var level = $(this).parents('tr').children().eq(4).text();
+            var address = $(this).parents('tr').children().eq(5).text();
 
             IDs.push(ID); names.push(name);
-            describes.push(describe); levels.push(level);
+            describes.push(describe); levels.push(level);addresss.push(address);
         }
     });
 
     new_data.push(JSON.stringify(IDs)); new_data.push(JSON.stringify(names));
     new_data.push(JSON.stringify(describes)); new_data.push(JSON.stringify(levels));
+    new_data.push(JSON.stringify(addresss));
 
     var new_data_ID_len = new_data[0].length;
     if (new_data_ID_len > 2) {

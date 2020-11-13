@@ -73,6 +73,7 @@ module SOEArea {
         string name;
         string describe;
         int level;
+        string address;
     };
     sequence<DxPropertySOE> DxPropertySOESeq;
 };

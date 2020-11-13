@@ -22,7 +22,7 @@ def get_soe_property_send():
     soeproperty = []
     for i in range(len(result)):
         soeproperty.append({"ID": result[i].ID, "name": result[i].name,
-                           "describe": result[i].describe, "level": result[i].level})
+                           "describe": result[i].describe, "level": result[i].level, "address": result[i].address})
     return json.dumps(soeproperty)
 
 
@@ -43,6 +43,7 @@ def set_soe_property():
         name = soep[1][j]
         describe = soep[2][j]
         level = soep[3][j]
+        address = soep[4][j]
         if ID == "":
             ID = 1000
         if name == "":
@@ -51,8 +52,10 @@ def set_soe_property():
             describe = "请描述SOE"
         if level == "":
             level = 1
+        if address == "":
+            address = "0"
         soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
-                                           describe.encode("utf-8"), int(level))
+                                           describe.encode("utf-8"), int(level), address.encode("utf-8"))
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
     return '保存成功!'
