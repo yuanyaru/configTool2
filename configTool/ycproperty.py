@@ -24,8 +24,8 @@ def get_yc_property_send():
         ycproperty.append({"id": result[i].ID, "name": result[i].name,
                            "describe": result[i].describe, "unit": result[i].unit,
                            "kval": round(result[i].kval, 7), "bval": round(result[i].bval, 7),
-                           "address": result[i].address, "uplimt": result[i].uplimt,
-                           "downlimt": result[i].downlimt})
+                           "address": result[i].address, "uplimt": round(result[i].uplimt, 7),
+                           "downlimt": round(result[i].downlimt, 7)})
     return json.dumps(ycproperty)
 
 
@@ -72,8 +72,8 @@ def set_yc_property():
         ycpstruct = YCArea.DxPropertyYC(int(ID), name.encode("utf-8"),
                                         describe.encode("utf-8"), unit.encode("utf-8"),
                                         round(float(kval), 7), round(float(bval), 7),
-                                        address.encode("utf-8"), float(uplimt),
-                                        float(downlimt))
+                                        address.encode("utf-8"), round(float(uplimt), 7),
+                                        round(float(downlimt), 7))
         ycproperty.append(ycpstruct)
     DataCommand.RPCSetYCProperty(station, ycproperty)
     return '保存成功!'
