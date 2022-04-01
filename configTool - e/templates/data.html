@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common/jquery.treeview.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/icon/iconfont.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common/jquery-confirm.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common/font-awesome.css')}}">
+{#    <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"/>#}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery-confirm.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/xlsx.core.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/jquery.treeview.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/station/sta-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yx/yx_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yx/yx_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yx/yx_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yx/yx_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yx/yx-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yc/yc_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yc/yc_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yc/yc_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yc/yc_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yc/yc-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yk/yk_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yk/yk_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yk/yk_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yk/yk_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yk/yk-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yt/yt_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yt/yt_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yt/yt_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yt/yt_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/yt/yt-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/soe/soe_table_sort.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/soe/soe_excel.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/soe/soe_data.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/soe/soe_table_adjustable.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/soe/soe-return-top.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/conf/monitoring_url.js')}}"></script>
+</head>
+    <body>
+        <div id="header">
+            <span class="span0">Config Tool</span>
+            <span class="span4" id="sta_name"></span>
+            <span class="span1" id="time"><i class="iconfont icon-time"></i>
+                <span></span>/<span></span>/<span></span>/<span></span>:<span></span>:<span></span>
+            </span>
+            <span class="span2"><i class="iconfont icon-monitoring"></i>
+                <a id="monitoring_id">Monitoring Page</a>
+            </span>
+            <span class="span3">
+                <a id="refresh" href="#" onclick="window.location.reload()">
+                    <i class="iconfont icon-refresh" title="Refresh"></i>Refresh
+                </a>
+            </span>
+        </div>
+
+        <div id="nav">
+           <ul id="browser" class="filetree treeview-famfamfam">
+           <ul id = "sta">
+                <li id="station" class="closed">
+                    <span class="folder" onclick="show_sta_table()">Station List
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="iconfont icon-station"></i>
+                    </span>
+                    {% for i in range(staLen) %}
+                        <ul>
+                            <li class="closed">
+                                <span class="folder" id="staId">{{ staValue[i].ID }}</span>
+                                <span class="folder" id="staName">{{ staValue[i].name }}</span>
+                                <ul>
+                                    <li><span class="file" name="yx">YX</span></li>
+                                </ul>
+                                <ul>
+                                    <li><span class="file" name="yc">YC</span></li>
+                                </ul>
+                                <ul>
+                                    <li><span class="file" name="yk">YK</span></li>
+                                </ul>
+                                <ul>
+                                    <li><span class="file" name="yt">YT</span></li>
+                                </ul>
+                                <ul>
+                                    <li><span class="file" name="soe">SOE</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </li>
+           </ul>
+           </ul>
+        </div>
+
+        <div id="section">
+            <div id="sta_table">
+                <fieldset>
+                    <legend class="legend">Station Data</legend>
+                    <a id="remove_container" onClick="selectStaFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="staload"><input type="file" id="stafile"/></div>
+                    <a id="remove_container" onClick="set_sta_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a id="remove_container" onClick="delete_sta_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a id="remove_container" onClick="exportExcel_sta()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="staresult" contenteditable>
+                        <table id="staTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllSta"/></th>
+                                <th id="th0_sta" onclick="SortTable_sta(this)" class="as">{{ tValue[0][0] }}</th>
+                                <th>{{ tValue[0][1] }}</th>
+                                <th>{{ tValue[0][2] }}</th>
+                                <th>{{ tValue[0][3] }}</th>
+                                <th>{{ tValue[0][4] }}</th>
+                                <th>{{ tValue[0][5] }}</th>
+                                <th>{{ tValue[0][6] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_sta">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onClick="deleteStaRow();" value="-"/>
+                <input type="button" onClick="addStaRow();" value="+"/>
+                <div id="sta_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+            </div>
+
+            <div id="yc_table">
+                <fieldset>
+                    <legend class="legend">YC Data</legend>
+                    <a onClick="selectYcFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="ycload"><input type="file" id="ycfile"/></div>
+                    <a onClick="set_yc_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a onClick="delete_yc_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a onClick="exportExcel_yc()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="ycresult" contenteditable>
+                        <table id="ycTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllYc"/></th>
+                                <th id="th0_yc" onclick="SortTable_yc(this)" class="as">{{ tValue[1][0] }}</th>
+                                <th>{{ tValue[1][1] }}</th>
+                                <th>{{ tValue[1][2] }}</th>
+                                <th>{{ tValue[1][3] }}</th>
+                                <th>{{ tValue[1][4] }}</th>
+                                <th>{{ tValue[1][5] }}</th>
+                                <th>{{ tValue[1][6] }}</th>
+                                <th>{{ tValue[1][7] }}</th>
+                                <th>{{ tValue[1][8] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_yc">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onclick="deleteYcRow();" value="-"/>
+                <input type="button" onclick="addYcRow();" value="+"/>
+                <div id="yc_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+            </div>
+
+            <div id="yx_table">
+                <fieldset>
+                    <legend class="legend">YX Data</legend>
+                    <a onClick="selectYxFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="yxload"><input type="file" id="yxfile"/></div>
+                    <a onClick="set_yx_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a onClick="delete_yx_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a onClick="exportExcel_yx()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="yxresult" contenteditable>
+                        <table id="yxTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllYx"/></th>
+                                <th id="th0_yx" onClick="SortTable_yx(this)" class="as">{{ tValue[2][0] }}</th>
+                                <th>{{ tValue[2][1] }}</th>
+                                <th>{{ tValue[2][2] }}</th>
+                                <th>{{ tValue[2][3] }}</th>
+                                <th>{{ tValue[2][4] }}</th>
+                                <th>{{ tValue[2][5] }}</th>
+                                <th>{{ tValue[2][6] }}</th>
+                                <th>{{ tValue[2][7] }}</th>
+                                <th>{{ tValue[2][8] }}</th>
+                                <th>{{ tValue[2][9] }}</th>
+                                <th>{{ tValue[2][10] }}</th>
+                                <th>{{ tValue[2][11] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_yx">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onclick="deleteYxRow();" value="-"/>
+                <input type="button" onclick="addYxRow();" value="+"/>
+                <div id="yx_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+        </div>
+
+            <div id="yk_table">
+                <fieldset>
+                    <legend class="legend">YK Data</legend>
+                    <a onClick="selectYkFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="ykload"><input type="file" id="ykfile"/></div>
+                    <a onClick="set_yk_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a onClick="delete_yk_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a onClick="exportExcel_yk()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="ykresult" contenteditable>
+                        <table id="ykTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllYk"/></th>
+                                <th id="th0_yk" onclick="SortTable_yk(this)" class="as">{{ tValue[3][0] }}</th>
+                                <th>{{ tValue[3][1] }}</th>
+                                <th>{{ tValue[3][2] }}</th>
+                                <th>{{ tValue[3][3] }}</th>
+                                <th>{{ tValue[3][4] }}</th>
+                                <th>{{ tValue[3][5] }}</th>
+                                <th>{{ tValue[3][6] }}</th>
+                                <th>{{ tValue[3][7] }}</th>
+                                <th>{{ tValue[3][8] }}</th>
+                                <th>{{ tValue[3][9] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_yk">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onclick="deleteYkRow();" value="-"/>
+                <input type="button" onclick="addYkRow();" value="+"/>
+                <div id="yk_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+            </div>
+
+            <div id="yt_table">
+                <fieldset>
+                    <legend class="legend">YT Data</legend>
+                    <a onClick="selectYtFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="ytload"><input type="file" id="ytfile"/></div>
+                    <a onClick="set_yt_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a onClick="delete_yt_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a onClick="exportExcel_yt()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="ytresult" contenteditable>
+                        <table id="ytTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllYt"/></th>
+                                <th id="th0_yt" onclick="SortTable_yt(this)" class="as">{{ tValue[4][0] }}</th>
+                                <th>{{ tValue[4][1] }}</th>
+                                <th>{{ tValue[4][2] }}</th>
+                                <th>{{ tValue[4][3] }}</th>
+                                <th>{{ tValue[4][4] }}</th>
+                                <th>{{ tValue[4][5] }}</th>
+                                <th>{{ tValue[4][6] }}</th>
+                                <th>{{ tValue[4][7] }}</th>
+                                <th>{{ tValue[4][8] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_yt">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onclick="deleteYtRow();" value="-"/>
+                <input type="button" onclick="addYtRow();" value="+"/>
+                <div id="yt_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+            </div>
+
+            <div id="soe_table">
+                <fieldset>
+                    <legend class="legend">SOE Data</legend>
+                    <a onClick="selectSoeFile()">
+                        <i class="iconfont icon-importexcel"></i> Import
+                    </a>
+                    <div id="soeload"><input type="file" id="soefile"/></div>
+                    <a onClick="set_soe_data()">
+                        <i class="iconfont icon-save"></i> Save
+                    </a>
+                     <a onClick="delete_soe_data()">
+                        <i class="iconfont icon-delete"></i> Delete
+                    </a>
+                    <a onClick="exportExcel_soe()">
+                        <i class="iconfont icon-exportexcel"></i> Export
+                    </a>
+                    <p></p>
+                    <p></p>
+                    <div id="soeresult" contenteditable>
+                        <table id="soeTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllSoe"/></th>
+                                <th id="th0_soe" onclick="SortTable_soe(this)" class="as">{{ tValue[5][0] }}</th>
+                                <th>{{ tValue[5][1] }}</th>
+                                <th>{{ tValue[5][2] }}</th>
+                                <th>{{ tValue[5][3] }}</th>
+                                <th>{{ tValue[5][4] }}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tBody_soe">
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <input type="button" onclick="deleteSoeRow();" value="-"/>
+                <input type="button" onclick="addSoeRow();" value="+"/>
+                <div id="soe_to_top" title="Return Top"><i class="iconfont icon-huojian"></i></div>
+            </div>
+        </div>
+
+        <div id="footer">
+            Copyright © 2021 by GMT
+{#            <div id="to_top" title="返回顶部"><img src="../static/css/img/rocket-top.jpg"></div>#}
+            <span id="about"><i class="iconfont icon-about"></i>&nbsp;&nbsp;About</span>
+            <span id="contect"><i class="iconfont icon-connect"></i>&nbsp;&nbsp;Contact</span>
+        </div>
+    </body>
+</html>

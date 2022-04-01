@@ -5,8 +5,8 @@ from flask import Blueprint, request
 from iceCon import ice_con
 import json
 import Ice
-Ice.loadSlice("./ice-sqlite.ice")
-# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
+# Ice.loadSlice("./ice-sqlite.ice")
+Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import SOEArea
 
 soe_blu = Blueprint('soe', __name__)
@@ -38,12 +38,41 @@ def set_soe_property():
     for i in range(len(SoeProperty)):
         soep.append(json.loads(SoeProperty[i]))
     soeproperty = []
-    for j in range(len(soep[1])):
-        ID = soep[0][j]
-        name = soep[1][j]
-        describe = soep[2][j]
-        level = soep[3][j]
-        address = soep[4][j]
+    num = len(soep[1]) / 8000
+    print num
+    j = 0
+    while j < num:
+        for i in range(8000*j, 8000*j+8000):
+            ID = soep[0][i]
+            name = soep[1][i]
+            describe = soep[2][i]
+            level = soep[3][i]
+            address = soep[4][i]
+            if ID == "":
+                ID = 1000
+            if name == "":
+                name = "请添加SOE名称"
+            if describe == "":
+                describe = "请描述SOE"
+            if level == "":
+                level = 1
+            if address == "":
+                address = "0"
+            soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
+                                               describe.encode("utf-8"), int(level), address.encode("utf-8"))
+            soeproperty.append(soepstruct)
+        DataCommand.RPCSetSOEProperty(station, soeproperty)
+        print len(soeproperty)
+        soeproperty[:] = []
+        j = j + 1
+        print j
+        continue
+    for i in range(8000*j, len(soep[1])):
+        ID = soep[0][i]
+        name = soep[1][i]
+        describe = soep[2][i]
+        level = soep[3][i]
+        address = soep[4][i]
         if ID == "":
             ID = 1000
         if name == "":
@@ -58,6 +87,7 @@ def set_soe_property():
                                            describe.encode("utf-8"), int(level), address.encode("utf-8"))
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
+    print len(soeproperty)
     return '保存成功!'
 
 

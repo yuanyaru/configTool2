@@ -5,8 +5,8 @@ from flask import Blueprint, request
 from iceCon import ice_con
 import json
 import Ice
-Ice.loadSlice("./ice-sqlite.ice")
-# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
+# Ice.loadSlice("./ice-sqlite.ice")
+Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import YXArea
 
 yx_blu = Blueprint('yx', __name__)
@@ -45,7 +45,7 @@ def set_yx_property():
     num = len(yxp[1])/8000
     print num
     j = 0
-    if j < num:
+    while j < num:
         for i in range(8000*j, 8000*j+8000):
             ID = yxp[0][i]
             name = yxp[1][i]
@@ -93,7 +93,9 @@ def set_yx_property():
         DataCommand.RPCSetYXProperty(station, yxproperty)
         print len(yxproperty)
         yxproperty[:] = []
-        j = j+1
+        j = j + 1
+        print j
+        continue
     for i in range(8000*j, len(yxp[1])):
         ID = yxp[0][i]
         name = yxp[1][i]
@@ -138,6 +140,7 @@ def set_yx_property():
                                         int(LinkPoint2), OneToZero.encode("utf-8"),
                                         ZeroToOne.encode("utf-8"), address.encode("utf-8"))
         yxproperty.append(yxpstruct)
+    DataCommand.RPCSetYXProperty(station, yxproperty)
     print len(yxproperty)
     # 测试写函数，不能超过约10000条数据
     # for i in range(10000):
@@ -160,7 +163,6 @@ def set_yx_property():
     #                                     int(LinkPoint2), OneToZero.encode("utf-8"),
     #                                     ZeroToOne.encode("utf-8"), address.encode("utf-8"))
     #     yxproperty.append(yxpstruct)
-    DataCommand.RPCSetYXProperty(station, yxproperty)
     return '保存成功!'
 
 """
