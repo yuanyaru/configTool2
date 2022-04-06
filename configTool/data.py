@@ -5,8 +5,8 @@ from flask import Flask, render_template
 from iceCon import ice_con
 import sys
 import Ice
-# Ice.loadSlice("./ice-sqlite.ice")
-Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
+Ice.loadSlice("./ice-sqlite.ice")
+# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 from staproperty import sta_blu, get_station_property
 from yxproperty import yx_blu
 from ycproperty import yc_blu

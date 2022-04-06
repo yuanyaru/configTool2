@@ -5,8 +5,8 @@ from flask import Blueprint, request
 from iceCon import ice_con
 import json
 import Ice
-# Ice.loadSlice("./ice-sqlite.ice")
-Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
+Ice.loadSlice("./ice-sqlite.ice")
+# Ice.loadSlice("/code/tool/configTool/ice-sqlite.ice")
 import StationArea
 
 sta_blu = Blueprint('station', __name__)
