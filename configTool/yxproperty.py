@@ -42,8 +42,7 @@ def set_yx_property():
     for i in range(len(YxProperty)):
         yxp.append(json.loads(YxProperty[i]))
     yxproperty = []
-    num = len(yxp[1])/8000
-    print num
+    num = int(len(yxp[1])/8000)
     j = 0
     while j < num:
         for i in range(8000*j, 8000*j+8000):
@@ -83,18 +82,18 @@ def set_yx_property():
                 ZeroToOne = "由合到分"
             if address == "":
                 address = "0"
-            yxpstruct = YXArea.DxPropertyYX(int(ID), name.encode("utf-8"),
-                                            describe.encode("utf-8"), int(ASDU),
+            yxpstruct = YXArea.DxPropertyYX(int(ID), name,
+                                            describe, int(ASDU),
                                             int(wordPos), int(bitPos),
                                             int(bitLength), int(LinkPoint1),
-                                            int(LinkPoint2), OneToZero.encode("utf-8"),
-                                            ZeroToOne.encode("utf-8"), address.encode("utf-8"))
+                                            int(LinkPoint2), OneToZero,
+                                            ZeroToOne, address)
             yxproperty.append(yxpstruct)
         DataCommand.RPCSetYXProperty(station, yxproperty)
-        print len(yxproperty)
+        print(len(yxproperty))
         yxproperty[:] = []
         j = j + 1
-        print j
+        print(j)
         continue
     for i in range(8000*j, len(yxp[1])):
         ID = yxp[0][i]
@@ -133,15 +132,14 @@ def set_yx_property():
             ZeroToOne = "由合到分"
         if address == "":
             address = "0"
-        yxpstruct = YXArea.DxPropertyYX(int(ID), name.encode("utf-8"),
-                                        describe.encode("utf-8"), int(ASDU),
+        yxpstruct = YXArea.DxPropertyYX(int(ID), name,
+                                        describe, int(ASDU),
                                         int(wordPos), int(bitPos),
                                         int(bitLength), int(LinkPoint1),
-                                        int(LinkPoint2), OneToZero.encode("utf-8"),
-                                        ZeroToOne.encode("utf-8"), address.encode("utf-8"))
+                                        int(LinkPoint2), OneToZero,
+                                        ZeroToOne, address)
         yxproperty.append(yxpstruct)
     DataCommand.RPCSetYXProperty(station, yxproperty)
-    print len(yxproperty)
     # 测试写函数，不能超过约10000条数据
     # for i in range(10000):
     #     ID = i
@@ -236,6 +234,6 @@ def delete_yx_data():
     yx_IDs = json.loads(yxIDs)
     pIDs = []
     for i in range(len(yx_IDs)):
-        pIDs.append(long(yx_IDs[i]))
+        pIDs.append(int(yx_IDs[i]))
     DataCommand.RPCDelYXProperty(station, pIDs)
     return '删除成功!'

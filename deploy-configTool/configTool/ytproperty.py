@@ -41,8 +41,8 @@ def set_yt_property():
     for i in range(len(YtProperty)):
         ytp.append(json.loads(YtProperty[i]))
     ytproperty = []
-    num = len(ytp[1])/8000
-    print num
+    num = int(len(ytp[1])/8000)
+    print(num)
     j = 0
     while j < num:
         for i in range(8000*j, 8000*j+8000):
@@ -73,17 +73,17 @@ def set_yt_property():
                 uplimt = 2000.0
             if downlimt == "":
                 downlimt = 0.0
-            ytpstruct = YTArea.DxPropertyYT(int(ID), name.encode("utf-8"),
-                                            describe.encode("utf-8"), unit.encode("utf-8"),
+            ytpstruct = YTArea.DxPropertyYT(int(ID), name,
+                                            describe, unit,
                                             round(float(kval), 7), round(float(bval), 7),
-                                            address.encode("utf-8"), round(float(uplimt), 7),
+                                            address, round(float(uplimt), 7),
                                             round(float(downlimt), 7))
             ytproperty.append(ytpstruct)
         DataCommand.RPCSetYTProperty(station, ytproperty)
-        print len(ytproperty)
+        print(len(ytproperty))
         ytproperty[:] = []
         j = j + 1
-        print j
+        print(j)
         continue
     for i in range(8000*j, len(ytp[1])):
         ID = ytp[0][i]
@@ -113,14 +113,14 @@ def set_yt_property():
             uplimt = 2000.0
         if downlimt == "":
             downlimt = 0.0
-        ytpstruct = YTArea.DxPropertyYT(int(ID), name.encode("utf-8"),
-                                        describe.encode("utf-8"), unit.encode("utf-8"),
+        ytpstruct = YTArea.DxPropertyYT(int(ID), name,
+                                        describe, unit,
                                         round(float(kval), 7), round(float(bval), 7),
-                                        address.encode("utf-8"), round(float(uplimt), 7),
+                                        address, round(float(uplimt), 7),
                                         round(float(downlimt), 7))
         ytproperty.append(ytpstruct)
     DataCommand.RPCSetYTProperty(station, ytproperty)
-    print len(ytproperty)
+    print(len(ytproperty))
     return '保存成功!'
 
 
@@ -134,6 +134,6 @@ def delete_yt_data():
     yt_IDs = json.loads(ytIDs)
     pIDs = []
     for i in range(len(yt_IDs)):
-        pIDs.append(long(yt_IDs[i]))
+        pIDs.append(int(yt_IDs[i]))
     DataCommand.RPCDelYTProperty(station, pIDs)
     return '删除成功!'

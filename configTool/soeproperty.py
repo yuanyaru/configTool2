@@ -38,8 +38,8 @@ def set_soe_property():
     for i in range(len(SoeProperty)):
         soep.append(json.loads(SoeProperty[i]))
     soeproperty = []
-    num = len(soep[1]) / 8000
-    print num
+    num = int(len(soep[1]) / 8000)
+    print(num)
     j = 0
     while j < num:
         for i in range(8000*j, 8000*j+8000):
@@ -58,14 +58,14 @@ def set_soe_property():
                 level = 1
             if address == "":
                 address = "0"
-            soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
-                                               describe.encode("utf-8"), int(level), address.encode("utf-8"))
+            soepstruct = SOEArea.DxPropertySOE(int(ID), name,
+                                               describe, int(level), address)
             soeproperty.append(soepstruct)
         DataCommand.RPCSetSOEProperty(station, soeproperty)
-        print len(soeproperty)
+        print(len(soeproperty))
         soeproperty[:] = []
         j = j + 1
-        print j
+        print(j)
         continue
     for i in range(8000*j, len(soep[1])):
         ID = soep[0][i]
@@ -83,11 +83,11 @@ def set_soe_property():
             level = 1
         if address == "":
             address = "0"
-        soepstruct = SOEArea.DxPropertySOE(int(ID), name.encode("utf-8"),
-                                           describe.encode("utf-8"), int(level), address.encode("utf-8"))
+        soepstruct = SOEArea.DxPropertySOE(int(ID), name,
+                                           describe, int(level), address)
         soeproperty.append(soepstruct)
     DataCommand.RPCSetSOEProperty(station, soeproperty)
-    print len(soeproperty)
+    print(len(soeproperty))
     return '保存成功!'
 
 
@@ -101,6 +101,6 @@ def delete_soe_data():
     soe_IDs = json.loads(soeIDs)
     pIDs = []
     for i in range(len(soe_IDs)):
-        pIDs.append(long(soe_IDs[i]))
+        pIDs.append(int(soe_IDs[i]))
     DataCommand.RPCDelSOEProperty(station, pIDs)
     return '删除成功!'

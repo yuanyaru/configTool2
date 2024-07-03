@@ -14,8 +14,8 @@ from ykproperty import yk_blu
 from ytproperty import yt_blu
 from soeproperty import soe_blu
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'

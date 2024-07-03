@@ -13,13 +13,13 @@ module YCArea {
         float kval;
         float bval;
         string address;
-        float uplimt;
-        float downlimt;
+        double uplimt;
+        double downlimt;
     };
 
     struct DxDTYC {
         short status;
-        float value;
+        double value;
         int timetag;
     };
 

@@ -92,8 +92,8 @@ if 'DxPropertyYC' not in _M_YCArea.__dict__:
         ('kval', (), IcePy._t_float),
         ('bval', (), IcePy._t_float),
         ('address', (), IcePy._t_string),
-        ('uplimt', (), IcePy._t_float),
-        ('downlimt', (), IcePy._t_float)
+        ('uplimt', (), IcePy._t_double),
+        ('downlimt', (), IcePy._t_double)
     ))
 
     _M_YCArea.DxPropertyYC = DxPropertyYC
@@ -131,7 +131,7 @@ if 'DxDTYC' not in _M_YCArea.__dict__:
 
     _M_YCArea._t_DxDTYC = IcePy.defineStruct('::YCArea::DxDTYC', DxDTYC, (), (
         ('status', (), IcePy._t_short),
-        ('value', (), IcePy._t_float),
+        ('value', (), IcePy._t_double),
         ('timetag', (), IcePy._t_int)
     ))
 

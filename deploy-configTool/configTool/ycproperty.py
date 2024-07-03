@@ -41,8 +41,8 @@ def set_yc_property():
     for i in range(len(YcProperty)):
         ycp.append(json.loads(YcProperty[i]))
     ycproperty = []
-    num = len(ycp[1]) / 8000
-    print num
+    num = int(len(ycp[1]) / 8000)
+    print(num)
     j = 0
     while j < num:
         for i in range(8000*j, 8000*j+8000):
@@ -73,17 +73,17 @@ def set_yc_property():
                 uplimt = 2000.0
             if downlimt == "":
                 downlimt = 0.0
-            ycpstruct = YCArea.DxPropertyYC(int(ID), name.encode("utf-8"),
-                                            describe.encode("utf-8"), unit.encode("utf-8"),
+            ycpstruct = YCArea.DxPropertyYC(int(ID), name,
+                                            describe, unit,
                                             round(float(kval), 7), round(float(bval), 7),
-                                            address.encode("utf-8"), round(float(uplimt), 7),
+                                            address, round(float(uplimt), 7),
                                             round(float(downlimt), 7))
             ycproperty.append(ycpstruct)
         DataCommand.RPCSetYCProperty(station, ycproperty)
-        print len(ycproperty)
+        print(len(ycproperty))
         ycproperty[:] = []
         j = j + 1
-        print j
+        print(j)
         continue
     for i in range(8000*j, len(ycp[1])):
         ID = ycp[0][i]
@@ -113,14 +113,14 @@ def set_yc_property():
             uplimt = 2000.0
         if downlimt == "":
             downlimt = 0.0
-        ycpstruct = YCArea.DxPropertyYC(int(ID), name.encode("utf-8"),
-                                        describe.encode("utf-8"), unit.encode("utf-8"),
+        ycpstruct = YCArea.DxPropertyYC(int(ID), name,
+                                        describe, unit,
                                         round(float(kval), 7), round(float(bval), 7),
-                                        address.encode("utf-8"), round(float(uplimt), 7),
+                                        address, round(float(uplimt), 7),
                                         round(float(downlimt), 7))
         ycproperty.append(ycpstruct)
     DataCommand.RPCSetYCProperty(station, ycproperty)
-    print len(ycproperty)
+    print(len(ycproperty))
     return '保存成功!'
 
 
@@ -134,6 +134,6 @@ def delete_yc_data():
     yc_IDs = json.loads(ycIDs)
     pIDs = []
     for i in range(len(yc_IDs)):
-        pIDs.append(long(yc_IDs[i]))
+        pIDs.append(int(yc_IDs[i]))
     DataCommand.RPCDelYCProperty(station, pIDs)
     return '删除成功!'

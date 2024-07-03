@@ -41,8 +41,8 @@ def set_yk_property():
     for i in range(len(YkProperty)):
         ykp.append(json.loads(YkProperty[i]))
     ykproperty = []
-    num = len(ykp[1]) / 8000
-    print num
+    num = int(len(ykp[1]) / 8000)
+    print(num)
     j = 0
     while j < num:
         for i in range(8000*j, 8000*j+8000):
@@ -76,17 +76,16 @@ def set_yk_property():
                 EnableValue = 0
             if address == "":
                 address = "0"
-            ykpstruct = YKArea.DxPropertyYK(int(ID), name.encode("utf-8"),
-                                            describe.encode("utf-8"), int(ASDU),
+            ykpstruct = YKArea.DxPropertyYK(int(ID), name,
+                                            describe, int(ASDU),
                                             int(wordPos), int(bitPos),
                                             int(bitLength), int(EnablePoint),
-                                            int(EnableValue), address.encode("utf-8"))
+                                            int(EnableValue), address)
             ykproperty.append(ykpstruct)
         DataCommand.RPCSetYKProperty(station, ykproperty)
-        print len(ykproperty)
+        print(len(ykproperty))
         ykproperty[:] = []
         j = j + 1
-        print j
         continue
     for i in range(8000*j, len(ykp[1])):
         ID = ykp[0][i]
@@ -119,14 +118,13 @@ def set_yk_property():
             EnableValue = 0
         if address == "":
             address = "0"
-        ykpstruct = YKArea.DxPropertyYK(int(ID), name.encode("utf-8"),
-                                        describe.encode("utf-8"), int(ASDU),
+        ykpstruct = YKArea.DxPropertyYK(int(ID), name,
+                                        describe, int(ASDU),
                                         int(wordPos), int(bitPos),
                                         int(bitLength), int(EnablePoint),
-                                        int(EnableValue), address.encode("utf-8"))
+                                        int(EnableValue), address)
         ykproperty.append(ykpstruct)
     DataCommand.RPCSetYKProperty(station, ykproperty)
-    print len(ykproperty)
     return '保存成功!'
 
 
@@ -140,6 +138,6 @@ def delete_yk_data():
     yk_IDs = json.loads(ykIDs)
     pIDs = []
     for i in range(len(yk_IDs)):
-        pIDs.append(long(yk_IDs[i]))
+        pIDs.append(int(yk_IDs[i]))
     DataCommand.RPCDelYKProperty(station, pIDs)
     return '删除成功!'

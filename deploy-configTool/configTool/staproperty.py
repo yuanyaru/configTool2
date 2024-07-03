@@ -63,9 +63,9 @@ def set_station_property():
             PORT = 60000
         if role == "":
             role = 1
-        spstruct = StationArea.DxPropertyStation(int(ID), name.encode("utf-8"),
-                                                 describe.encode("utf-8"), int(ruleID),
-                                                 address.encode("utf-8"), int(PORT),
+        spstruct = StationArea.DxPropertyStation(int(ID), name,
+                                                 describe, int(ruleID),
+                                                 address, int(PORT),
                                                  int(role))
         stap.append(spstruct)
     # spstruct = StationArea.DxPropertyStation(99, "station", "station111", 19,
@@ -83,6 +83,6 @@ def delete_station_data():
     stations = json.loads(stationIDs)
     sta = []
     for i in range(len(stations)):
-        sta.append(long(stations[i]))
+        sta.append(int(stations[i]))
     DataCommand.RPCDelStationProperty(sta)
     return '删除成功!'
